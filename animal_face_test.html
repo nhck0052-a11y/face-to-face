@@ -14,6 +14,7 @@
             min-height: 100vh;
             padding-top: 20px;
             text-align: center;
+            position: relative; /* For absolute positioning of back-to-home button */
         }
         #label-container {
             margin-top: 20px;
@@ -50,10 +51,11 @@
         button:hover {
             background-color: #0056b3;
         }
-        #back-to-home {
+        #back-to-home-button { /* Changed ID to distinguish from old anchor */
             position: absolute;
-            top: 20px;
-            left: 20px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             padding: 10px 20px;
             font-size: 1em;
             background-color: #6c757d;
@@ -62,14 +64,14 @@
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
+            z-index: 1001; /* Ensure it's above other elements */
         }
-        #back-to-home:hover {
+        #back-to-home-button:hover {
             background-color: #5a6268;
         }
     </style>
 </head>
 <body>
-    <a href="index.html" id="back-to-home"></a>
     <h1 id="animal-face-test-header"></h1>
     <div id="tm-image-model-text"></div>
     <button type="button" id="animal-face-test-start-button"></button>
@@ -206,7 +208,9 @@
                 .replace('##DESCRIPTION##', lastPredictedResult.description);
             const shareUrl = 'https://www.instagram.com/';
 
-            alert(`인스타그램에 공유해보세요!\n\n${shareText}`);
+            alert(`인스타그램에 공유해보세요!
+
+${shareText}`);
             window.open(shareUrl, '_blank');
         });
 
@@ -247,7 +251,7 @@
             const currentLang = localStorage.getItem('lang') || 'ko';
             document.title = translations[currentLang].animalFaceTestTitle;
             document.getElementById('animal-face-test-header').textContent = translations[currentLang].animalFaceTestTitle;
-            document.getElementById('back-to-home').textContent = translations[currentLang].backToHome;
+            document.getElementById('back-to-home-button').textContent = translations[currentLang].backToHome; // 홈으로 돌아가기 버튼 텍스트 설정
             document.getElementById('tm-image-model-text').textContent = translations[currentLang].tmImageModel;
             document.getElementById('animal-face-test-start-button').textContent = translations[currentLang].start;
             shareAnimalFaceButton.textContent = translations[currentLang].shareAnimalFaceButton; // Set text for share button

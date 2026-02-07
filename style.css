@@ -309,6 +309,11 @@ h1#header-title { /* Targeting h1 moved to main content area */
         top: 10px;
         left: 10px;
     }
+    #back-to-home-button { /* Adjust size for mobile */
+        padding: 8px 15px; /* Adjust padding */
+        font-size: 0.9em; /* Adjust font size */
+        bottom: 10px; /* Adjust position for mobile */
+    }
 
     #label-container div {
         font-size: 1.8em; /* Adjust result text size for mobile */
