@@ -1,1 +1,67 @@
-/* Add styles here */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3em;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.draw-section {
+    margin-bottom: 2rem;
+}
+
+#draw-button {
+    padding: 1rem 2rem;
+    font-size: 1.5em;
+    color: #fff;
+    background-color: #ff7e5f;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#draw-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+#result {
+    margin-top: 2rem;
+    font-size: 1.5em;
+    color: #333;
+    min-height: 50px;
+}
+
+.share-section {
+    margin-top: 1rem;
+}
+
+#share-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#share-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
