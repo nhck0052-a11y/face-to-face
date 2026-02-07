@@ -160,10 +160,6 @@
             }
         }
 
-        startButton.addEventListener('click', () => {
-            fileInput.click();
-        });
-
         fileInput.addEventListener('change', async (event) => {
             const file = event.target.files[0];
             if (!file) {
@@ -206,10 +202,7 @@ ${shareText}`);
         });
 
         document.addEventListener('DOMContentLoaded', async () => {
-            // 로딩 메시지는 loadModel에서 제어하므로, DOMContentLoaded에서는 시작 버튼만 숨김
-            startButton.style.display = 'none'; // 모델 로드 전에는 시작 버튼 숨김
-            await loadModel(); // 모델 로드 시작
-
+            await loadModel();
             labelContainer = document.getElementById("label-container");
             const localTranslations = {
                 ko: {
@@ -247,7 +240,7 @@ ${shareText}`);
             document.getElementById('animal-face-test-header').textContent = translations[currentLang].animalFaceTestTitle;
             backToHomeButton.textContent = translations[currentLang].backToHome; // 홈으로 돌아가기 버튼 텍스트 설정
             document.getElementById('tm-image-model-text').textContent = translations[currentLang].tmImageModel;
-            // startButton.textContent는 loadModel 후 설정되므로 여기서는 제외
+            startButton.textContent = translations[currentLang].start; // startButton 텍스트 설정
             shareAnimalFaceButton.textContent = translations[currentLang].shareAnimalFaceButton; // Set text for share button
         });
     </script>

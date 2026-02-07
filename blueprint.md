@@ -17,7 +17,7 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 - **Navigation**: A navigation button for "제휴 문의" (Partnership Inquiry) in the main application's header (index.html), positioned in the top-left corner.
 
 ## New Feature: Animal Face Test (Teachable Machine Integration)
-- **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/ANIMAL_MODEL_PLACEHOLDER/`) for an animal face reading test, classifying faces into "개상" (Dog Face), "고양이상" (Cat Face), or "돼지상" (Pig Face).
+- **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/NUCdwV0FQ/`) for an animal face reading test, classifying faces into "개상" (Dog Face), "고양이상" (Cat Face), or "돼지상" (Pig Face).
 - **Input Method**: Uses file upload for image analysis.
 - **Real-time Prediction**: Displays predictions from the Teachable Machine model based on the uploaded image.
 - **Enhanced Results Display**: Focuses on displaying only the highest probability prediction class with translated, engaging names (e.g., "개상", "고양이상", "돼지상") and detailed, expert-like descriptions that include plausible facial feature analysis and their significance.
