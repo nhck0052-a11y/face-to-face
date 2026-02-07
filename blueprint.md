@@ -20,7 +20,8 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 - **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/BqpR6ZHhi/`) for a face reading test.
 - **Input Method**: Changed from webcam to file upload, allowing users to upload an image for analysis.
 - **Real-time Prediction**: Displays real-time predictions from the Teachable Machine model based on the uploaded image.
-- **Enhanced Results Display**: Provides a user-friendly description for each face reading outcome (e.g., "상", "중", "하"), making the test more engaging.
+- **Enhanced Results Display**: Focuses on displaying only the highest probability prediction class (without percentages) and a user-friendly description, making the test more engaging.
+- **Social Sharing**: Includes a "Share on Instagram" button, allowing users to easily share their face reading results with a generated text.
 - **Dedicated Page**: The feature resides on a separate page (`face_test.html`) to maintain separation of concerns.
 - **Navigation**: A navigation link in the main application's header (`index.html`) leads to this test page (positioned next to the partnership inquiry button), and a link on the test page allows users to return to the home page.
 - **Language Support**: All static text on the face test page is translatable (Korean/English).

@@ -79,6 +79,7 @@
     </div>
     <div id="label-container"></div>
     <div id="face-description" style="margin-top: 20px; font-size: 1.1em; color: #555;"></div>
+    <button id="share-face-button" style="display: none; margin-top: 20px;" class="lang-button"></button>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script type="text/javascript">
@@ -94,8 +95,10 @@
         const fileInput = document.getElementById('file-input');
         const startButton = document.getElementById('face-test-start-button');
         const faceDescriptionDiv = document.getElementById('face-description');
+        const shareFaceButton = document.getElementById('share-face-button'); // Get button reference
         let ctx = imageCanvas.getContext('2d');
         let translations; // Declare translations in a higher scope
+        let lastPredictedResult = { className: '', description: '' }; // To store the last prediction
 
         // Load the image model
         async function loadModel() {
@@ -115,21 +118,26 @@
             let highestProbability = 0;
             let predictedClassName = '';
 
-            labelContainer.innerHTML = ''; // Clear previous predictions
             for (let i = 0; i < maxPredictions; i++) {
-                const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-                labelContainer.appendChild(document.createElement("div")).innerHTML = classPrediction;
-
                 if (prediction[i].probability > highestProbability) {
                     highestProbability = prediction[i].probability;
                     predictedClassName = prediction[i].className;
                 }
             }
+            
+            // Clear previous predictions (if any) and set only the highest one
+            labelContainer.innerHTML = '';
+            const resultDiv = document.createElement("div");
+            resultDiv.innerHTML = predictedClassName; // Only show the class name, not probability
+            labelContainer.appendChild(resultDiv);
 
             // Get current language and descriptions from the translations object
             const currentLang = localStorage.getItem('lang') || 'ko';
             const description = translations[currentLang].faceDescriptions[predictedClassName];
             faceDescriptionDiv.textContent = description || ''; // Display the description or empty string
+            
+            lastPredictedResult = { className: predictedClassName, description: description }; // Store result
+            shareFaceButton.style.display = 'block'; // Show share button after prediction
         }
 
         startButton.addEventListener('click', () => {
@@ -152,11 +160,24 @@
                     imageCanvas.style.display = 'block'; // Show the canvas
                     labelContainer.innerHTML = ''; // Clear previous predictions
                     faceDescriptionDiv.textContent = ''; // Clear previous description
+                    shareFaceButton.style.display = 'none'; // Hide share button until new prediction
                     await predict();
                 };
                 img.src = e.target.result;
             };
             reader.readAsDataURL(file);
+        });
+
+        shareFaceButton.addEventListener('click', () => {
+            const currentLang = localStorage.getItem('lang') || 'ko';
+            const shareTextTemplate = translations[currentLang].shareFaceText;
+            const shareText = shareTextTemplate
+                .replace('##RESULT##', lastPredictedResult.className)
+                .replace('##DESCRIPTION##', lastPredictedResult.description);
+            const shareUrl = 'https://www.instagram.com/'; // Placeholder for Instagram share
+
+            alert(`인스타그램에 공유해보세요!\n\n${shareText}`);
+            window.open(shareUrl, '_blank');
         });
 
         // Initialize on DOMContentLoaded to load model and setup UI
@@ -174,7 +195,9 @@
                         '상': '당신은 상위 1%의 관상입니다! 빛나는 앞날이 기대됩니다!',
                         '중': '당신은 평범하지만 매력적인 관상입니다! 노력하면 빛을 볼 거예요!',
                         '하': '당신은 독특한 매력의 관상입니다! 자신감을 가지세요!'
-                    }
+                    },
+                    shareFaceButton: '결과 공유하기',
+                    shareFaceText: '방금 관상 테스트에서 "##RESULT##" 관상으로 나왔어요! ##DESCRIPTION##'
                 },
                 en: {
                     faceTestTitle: 'Face Test',
@@ -185,7 +208,9 @@
                         '상': 'You have a top 1% face reading! A bright future awaits!',
                         '중': 'You have an average but charming face reading! Efforts will pay off!',
                         '하': 'You have a uniquely charming face reading! Be confident!'
-                    }
+                    },
+                    shareFaceButton: 'Share Result',
+                    shareFaceText: 'My face reading test result is "##RESULT##"! ##DESCRIPTION##'
                 }
             };
             translations = localTranslations; // Assign to higher scope variable
@@ -197,6 +222,7 @@
             document.getElementById('back-to-home').textContent = translations[currentLang].backToHome;
             document.getElementById('tm-image-model-text').textContent = translations[currentLang].tmImageModel;
             document.getElementById('face-test-start-button').textContent = translations[currentLang].start;
+            shareFaceButton.textContent = translations[currentLang].shareFaceButton; // Set text for share button
         });
     </script>
 </body>

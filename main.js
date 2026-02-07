@@ -44,7 +44,9 @@ const translations = {
             '상': '당신은 상위 1%의 관상입니다! 빛나는 앞날이 기대됩니다!',
             '중': '당신은 평범하지만 매력적인 관상입니다! 노력하면 빛을 볼 거예요!',
             '하': '당신은 독특한 매력의 관상입니다! 자신감을 가지세요!'
-        }
+        },
+        shareFaceButton: '결과 공유하기',
+        shareFaceText: '방금 관상 테스트에서 "##RESULT##" 관상으로 나왔어요! ##DESCRIPTION##'
     },
     en: {
         title: 'Lucky Draw',
@@ -81,7 +83,9 @@ const translations = {
             '상': 'You have a top 1% face reading! A bright future awaits!',
             '중': 'You have an average but charming face reading! Efforts will pay off!',
             '하': 'You have a uniquely charming face reading! Be confident!'
-        }
+        },
+        shareFaceButton: 'Share Result',
+        shareFaceText: 'My face reading test result is "##RESULT##"! ##DESCRIPTION##'
     }
 };
 
