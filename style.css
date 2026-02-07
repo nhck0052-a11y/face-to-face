@@ -49,7 +49,7 @@ header {
 /* Ensure main content does not interfere with z-index of navs */
 main {
     position: relative; /* Establish stacking context */
-    z-index: 1; /* Lower than navs */
+    /* z-index: 1; /* Lower than navs - REMOVED */
 }
 
 h1#header-title { /* Targeting h1 moved to main content area */
