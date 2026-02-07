@@ -34,7 +34,12 @@ const translations = {
         labelName: '이름:',
         labelEmail: '이메일:',
         labelMessage: '메시지:',
-        contactSubmit: '보내기'
+        contactSubmit: '보내기',
+        faceTestNavButton: '관상 테스트',
+        faceTestTitle: '관상 테스트',
+        backToHome: '홈으로 돌아가기',
+        tmImageModel: 'Teachable Machine Image Model',
+        start: '시작'
     },
     en: {
         title: 'Lucky Draw',
@@ -61,7 +66,12 @@ const translations = {
         labelName: 'Name:',
         labelEmail: 'Email:',
         labelMessage: 'Message:',
-        contactSubmit: 'Send'
+        contactSubmit: 'Send',
+        faceTestNavButton: 'Face Test',
+        faceTestTitle: 'Face Test',
+        backToHome: 'Back to Home',
+        tmImageModel: 'Teachable Machine Image Model',
+        start: 'Start'
     }
 };
 
@@ -75,11 +85,17 @@ const setLanguage = (lang) => {
     document.getElementById('draw-button').textContent = translations[lang].drawButton;
     document.getElementById('share-button').textContent = translations[lang].shareButton;
     contactNavButton.textContent = translations[lang].contactNavButton;
-    document.getElementById('contact-title').textContent = translations[lang].contactTitle;
-    document.getElementById('label-name').textContent = translations[lang].labelName;
-    document.getElementById('label-email').textContent = translations[lang].labelEmail;
-    document.getElementById('label-message').textContent = translations[lang].labelMessage;
-    document.getElementById('contact-submit').textContent = translations[lang].contactSubmit;
+    document.getElementById('face-test-nav-button').textContent = translations[lang].faceTestNavButton;
+
+    // Only update contact form specific elements if they exist (for face_test.html)
+    if (document.getElementById('contact-title')) {
+        document.getElementById('contact-title').textContent = translations[lang].contactTitle;
+        document.getElementById('label-name').textContent = translations[lang].labelName;
+        document.getElementById('label-email').textContent = translations[lang].labelEmail;
+        document.getElementById('label-message').textContent = translations[lang].labelMessage;
+        document.getElementById('contact-submit').textContent = translations[lang].contactSubmit;
+    }
+
 
     // Update active class for language buttons
     langKoButton.classList.remove('active');

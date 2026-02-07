@@ -16,13 +16,21 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 - **Form Fields**: Includes fields for Name, Email, and Message.
 - **Navigation**: A navigation link in the header allows users to easily access the contact form section.
 
+## New Feature: Face Reading Test (Teachable Machine Integration)
+- **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/BqpR6ZHhi/`) for a face reading test.
+- **Webcam Access**: Utilizes the user's webcam to capture images for the model prediction.
+- **Real-time Prediction**: Displays real-time predictions from the Teachable Machine model.
+- **Dedicated Page**: The feature resides on a separate page (`face_test.html`) to maintain separation of concerns.
+- **Navigation**: A navigation link in the main application's header (index.html) leads to this test page, and a link on the test page allows users to return to the home page.
+- **Language Support**: All static text on the face test page is translatable (Korean/English).
+
 ## Technologies Used
 - HTML5
 - CSS3
 - JavaScript (ES6+)
 - `canvas-confetti` library (via CDN)
 - Formspree for form submission handling
-
+- TensorFlow.js and Teachable Machine Image library for the AI model.
 
 ## Current Language
 The application is currently entirely in Korean.
