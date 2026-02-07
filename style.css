@@ -40,11 +40,9 @@ header h1 {
     /* Adjust margin to be part of the flex distribution */
 }
 
-/* Container for nav buttons (Partnership and Face Test) */
-.header-nav-buttons {
+#top-left-buttons {
     display: flex;
     gap: 10px; /* Space between the buttons */
-    margin-left: 10px; /* Space from language selector, will be overridden by justify-content */
 }
 
 
