@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="face-test-title"></title>
+    <title id="animal-face-test-title"></title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -70,16 +70,16 @@
 </head>
 <body>
     <a href="index.html" id="back-to-home"></a>
-    <h1 id="face-test-header"></h1>
+    <h1 id="animal-face-test-header"></h1>
     <div id="tm-image-model-text"></div>
-    <button type="button" id="face-test-start-button"></button>
+    <button type="button" id="animal-face-test-start-button"></button>
     <input type="file" id="file-input" accept="image/*" style="display: none;">
     <div id="image-container">
         <canvas id="image-canvas" style="display: none; max-width: 200px; max-height: 200px;"></canvas>
     </div>
     <div id="label-container"></div>
-    <div id="face-description" style="margin-top: 20px; font-size: 1.1em; color: #555;"></div>
-    <button id="share-face-button" style="display: none; margin-top: 20px;" class="lang-button"></button>
+    <div id="animal-description" style="margin-top: 20px; font-size: 1.1em; color: #555;"></div>
+    <button id="share-animal-face-button" style="display: none; margin-top: 20px;" class="lang-button"></button>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -87,18 +87,19 @@
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
-        // the link to your model provided by Teachable Machine export panel
-        const URL = "https://teachablemachine.withgoogle.com/models/BqpR6ZHhi/";
+        // THE TEAHABLE MACHINE MODEL URL FOR ANIMAL FACE TEST
+        // PLEASE REPLACE THIS WITH YOUR ACTUAL MODEL URL
+        const URL = "https://teachablemachine.withgoogle.com/models/ANIMAL_MODEL_PLACEHOLDER/"; 
 
         let model, labelContainer, maxPredictions;
         const imageCanvas = document.getElementById('image-canvas');
         const fileInput = document.getElementById('file-input');
-        const startButton = document.getElementById('face-test-start-button');
-        const faceDescriptionDiv = document.getElementById('face-description');
-        const shareFaceButton = document.getElementById('share-face-button'); // Get button reference
+        const startButton = document.getElementById('animal-face-test-start-button');
+        const animalDescriptionDiv = document.getElementById('animal-description');
+        const shareAnimalFaceButton = document.getElementById('share-animal-face-button'); 
         let ctx = imageCanvas.getContext('2d');
         let translations; // Declare translations in a higher scope
-        let lastPredictedResult = { originalClassName: '', translatedClassName: '', description: '' }; // To store the last prediction
+        let lastPredictedResult = { originalClassName: '', translatedClassName: '', description: '' };
         
         // Confetti setup - use the image-container as the origin for confetti
         const myConfetti = confetti.create(document.getElementById('image-container'), {
@@ -127,7 +128,7 @@
             }
             const prediction = await model.predict(imageCanvas);
             let highestProbability = 0;
-            let originalPredictedClassName = ''; // Store the original class name from the model
+            let originalPredictedClassName = '';
 
             for (let i = 0; i < maxPredictions; i++) {
                 if (prediction[i].probability > highestProbability) {
@@ -138,26 +139,25 @@
             
             // Get current language and translations
             const currentLang = localStorage.getItem('lang') || 'ko';
-            const translatedClassName = translations[currentLang].faceClassTranslations[originalPredictedClassName] || originalPredictedClassName;
-            const description = translations[currentLang].faceDescriptions[translatedClassName];
+            const translatedClassName = translations[currentLang].animalClassTranslations[originalPredictedClassName] || originalPredictedClassName;
+            const description = translations[currentLang].animalDescriptions[translatedClassName];
 
-            // Clear previous predictions (if any) and set only the highest one
             labelContainer.innerHTML = '';
             const resultDiv = document.createElement("div");
-            resultDiv.innerHTML = translatedClassName; // Display the translated class name
+            resultDiv.innerHTML = translatedClassName;
             labelContainer.appendChild(resultDiv);
 
-            faceDescriptionDiv.textContent = description || ''; // Display the description or empty string
+            animalDescriptionDiv.textContent = description || '';
             
             lastPredictedResult = { 
                 originalClassName: originalPredictedClassName,
                 translatedClassName: translatedClassName,
                 description: description 
             };
-            shareFaceButton.style.display = 'block'; // Show share button after prediction
+            shareAnimalFaceButton.style.display = 'block';
 
-            // Trigger confetti for "상" (original class name)
-            if (originalPredictedClassName === '상') {
+            // Trigger confetti for "개상" (dog face)
+            if (originalPredictedClassName === 'Dog') { // Assuming 'Dog' is the class name for 개상
                 myConfetti({
                     particleCount: 100,
                     spread: 70,
@@ -167,7 +167,7 @@
         }
 
         startButton.addEventListener('click', () => {
-            fileInput.click(); // Trigger the file input click
+            fileInput.click();
         });
 
         fileInput.addEventListener('change', async (event) => {
@@ -179,14 +179,13 @@
             reader.onload = async (e) => {
                 const img = new Image();
                 img.onload = async () => {
-                    // Resize image to 200x200 for the model
                     imageCanvas.width = 200;
                     imageCanvas.height = 200;
                     ctx.drawImage(img, 0, 0, 200, 200);
-                    imageCanvas.style.display = 'block'; // Show the canvas
-                    labelContainer.innerHTML = ''; // Clear previous predictions
-                    faceDescriptionDiv.textContent = ''; // Clear previous description
-                    shareFaceButton.style.display = 'none'; // Hide share button until new prediction
+                    imageCanvas.style.display = 'block';
+                    labelContainer.innerHTML = '';
+                    animalDescriptionDiv.textContent = '';
+                    shareAnimalFaceButton.style.display = 'none';
                     await predict();
                 };
                 img.src = e.target.result;
@@ -194,71 +193,71 @@
             reader.readAsDataURL(file);
         });
 
-        shareFaceButton.addEventListener('click', () => {
+        shareAnimalFaceButton.addEventListener('click', () => {
             const currentLang = localStorage.getItem('lang') || 'ko';
-            const shareTextTemplate = translations[currentLang].shareFaceText;
+            const shareTextTemplate = translations[currentLang].shareAnimalFaceText;
             const shareText = shareTextTemplate
-                .replace('##RESULT##', lastPredictedResult.translatedClassName) // Use translated class name
+                .replace('##RESULT##', lastPredictedResult.translatedClassName)
                 .replace('##DESCRIPTION##', lastPredictedResult.description);
-            const shareUrl = 'https://www.instagram.com/'; // Placeholder for Instagram share
+            const shareUrl = 'https://www.instagram.com/';
 
-            alert(`인스타그램에 공유해보세요!\n\n${shareText}`);
+            alert(`인스타그램에 공유해보세요!
+
+${shareText}`);
             window.open(shareUrl, '_blank');
         });
 
-        // Initialize on DOMContentLoaded to load model and setup UI
         document.addEventListener('DOMContentLoaded', async () => {
             await loadModel();
             labelContainer = document.getElementById("label-container");
-            // Define translations locally for initialization
             const localTranslations = {
                 ko: {
-                    faceTestTitle: '관상 테스트',
+                    animalFaceTestTitle: '동물상 테스트',
                     backToHome: '홈으로 돌아가기',
                     tmImageModel: 'Teachable Machine Image Model',
                     start: '이미지 업로드',
-                    faceDescriptions: {
-                        '금상': '당신은 타고난 복을 지닌 관상입니다! 넓은 이마와 또렷한 눈빛은 지혜와 통찰력을, 두툼한 귓볼은 재물운을 상징합니다. 또한, 입꼬리가 살짝 올라가 있어 인덕이 많고 주변 사람들에게 행운을 가져다주는 길상입니다. 하는 일마다 술술 풀리고 사람들의 존경을 받는 리더의 상입니다. 앞으로 펼쳐질 성공적인 삶을 기대해도 좋습니다!',
-                        '은상': '당신은 안정적이고 균형 잡힌 관상입니다! 단정하고 깔끔한 인상은 신뢰감을 주며, 부드러운 눈매는 온화한 성품을 나타냅니다. 코의 형태가 안정적이어서 재물운도 꾸준히 들어오는 편입니다. 큰 굴곡 없이 평탄하고 행복한 삶을 꾸려나갈 관상으로, 꾸준한 노력으로 더욱 발전할 수 있습니다. 작은 행운들이 당신을 기다리고 있습니다!',
-                        '동상': '당신은 개성 넘치는 매력적인 관상입니다! 날카로운 눈매는 강한 추진력을, 개성 있는 코는 특별한 재능을 의미합니다. 때로는 고집이 세다는 인상을 줄 수 있지만, 이는 목표를 향한 강한 의지를 나타냅니다. 남들과는 다른 특별한 길을 개척하여 성공할 수 있는 관상입니다. 당신만의 독특한 매력으로 주변을 사로잡을 수 있습니다. 스스로를 믿고 나아가세요!'
+                    animalDescriptions: {
+                        '개상': '당신은 충성스럽고 정이 많은 개상입니다! 크고 맑은 눈은 순수함을, 살짝 처진 눈꼬리는 온화함을 나타냅니다. 주변 사람들에게 편안함을 주며, 한번 마음 준 사람은 절대 배신하지 않는 의리의 상입니다. 긍정적이고 활발한 성격으로 어디서든 인기를 한 몸에 받습니다. 당신의 매력에 모두가 빠져들 거예요!',
+                        '고양이상': '당신은 도도하고 매력적인 고양이상입니다! 날카로운 듯 올라간 눈꼬리는 섹시함을, 오똑한 콧대는 자신감을 보여줍니다. 신비로운 분위기로 사람들의 시선을 사로잡으며, 독립적이고 자기 주관이 뚜렷합니다. 때로는 까칠해 보이지만, 마음을 열면 누구보다 따뜻한 매력을 발산합니다. 당신의 시크한 매력에 많은 사람들이 반할 것입니다!',
+                        '돼지상': '당신은 복스럽고 풍요로운 돼지상입니다! 둥글고 푸근한 인상은 재물운과 건강운을 동시에 상징합니다. 넉넉한 얼굴형은 사람들에게 편안함과 안정감을 주며, 먹을 복과 인복이 많아 항상 주변에 사람이 끊이지 않습니다. 낙천적이고 여유로운 성격으로 어떤 어려움도 현명하게 헤쳐나갑니다. 당신과 함께하는 모든 순간이 행복으로 가득 찰 거예요!'
                     },
-                    faceClassTranslations: {
-                        '상': '금상',
-                        '중': '은상',
-                        '하': '동상'
+                    animalClassTranslations: {
+                        'Dog': '개상',
+                        'Cat': '고양이상',
+                        'Pig': '돼지상'
                     },
-                    shareFaceButton: '결과 공유하기',
-                    shareFaceText: '방금 관상 테스트에서 "##RESULT##" 관상으로 나왔어요! ##DESCRIPTION##'
+                    shareAnimalFaceButton: '결과 공유하기',
+                    shareAnimalFaceText: '방금 동물상 테스트에서 "##RESULT##" 동물상으로 나왔어요! ##DESCRIPTION##'
                 },
                 en: {
-                    faceTestTitle: 'Face Test',
+                    animalFaceTestTitle: 'Animal Face Test',
                     backToHome: 'Back to Home',
                     tmImageModel: 'Teachable Machine Image Model',
                     start: 'Upload Image',
-                    faceDescriptions: {
-                        '금상': 'You possess a face of innate prosperity! A broad forehead and clear eyes symbolize wisdom and insight, while thick earlobes indicate wealth. Your gently upturned mouth corners suggest great personal charm, bringing luck to those around you. This is the mark of a respected leader who finds smooth success in all endeavors. Look forward to a successful life ahead!',
-                        '은상': 'Yours is a balanced and stable face! Your neat and tidy appearance inspires trust, and soft eyes reveal a gentle nature. A steady nose shape indicates consistent financial fortune. This face suggests a smooth and happy life without major upheavals; continuous effort will bring further development. Small fortunes are awaiting you!',
-                        '동상': 'You have a face of distinctive charm! Sharp eyes signify strong drive, and a unique nose suggests special talents. While sometimes perceived as stubborn, this reflects your strong will towards your goals. This face is destined to forge a unique path to success, captivating others with your individual charisma. Trust yourself and move forward!'
+                    animalDescriptions: {
+                        'Dog': 'You have a loyal and affectionate Dog Face! Large, clear eyes signify purity, and slightly downturned eyes indicate gentleness. You bring comfort to those around you and never betray those you've bonded with. Your positive and active personality makes you popular everywhere. Everyone will fall for your charm!',
+                        'Cat': 'Yours is a haughty and charming Cat Face! Sharply upturned eyes suggest sexiness, and a high nose bridge shows confidence. You captivate attention with your mysterious aura, being independent and opinionated. Though sometimes appearing prickly, you radiate warmth once you open up. Many will be smitten by your chic charm!',
+                        'Pig': 'You possess a fortunate and prosperous Pig Face! Your round and amiable features symbolize both wealth and health. Your generous face shape brings comfort and stability to others, and you are blessed with good fortune in food and relationships. Your optimistic and relaxed nature allows you to wisely navigate any difficulties. Every moment with you will be filled with happiness!'
                     },
-                    faceClassTranslations: {
-                        '상': '금상',
-                        '중': '은상',
-                        '하': '동상'
+                    animalClassTranslations: {
+                        'Dog': 'Dog Face',
+                        'Cat': 'Cat Face',
+                        'Pig': 'Pig Face'
                     },
-                    shareFaceButton: 'Share Result',
-                    shareFaceText: 'My face reading test result is "##RESULT##"! ##DESCRIPTION##'
+                    shareAnimalFaceButton: 'Share Result',
+                    shareAnimalFaceText: 'My animal face reading result is "##RESULT##"! ##DESCRIPTION##'
                 }
             };
             translations = localTranslations; // Assign to higher scope variable
 
             // Initial language setup
             const currentLang = localStorage.getItem('lang') || 'ko';
-            document.title = translations[currentLang].faceTestTitle;
-            document.getElementById('face-test-header').textContent = translations[currentLang].faceTestTitle;
+            document.title = translations[currentLang].animalFaceTestTitle;
+            document.getElementById('animal-face-test-header').textContent = translations[currentLang].animalFaceTestTitle;
             document.getElementById('back-to-home').textContent = translations[currentLang].backToHome;
             document.getElementById('tm-image-model-text').textContent = translations[currentLang].tmImageModel;
-            document.getElementById('face-test-start-button').textContent = translations[currentLang].start;
-            shareFaceButton.textContent = translations[currentLang].shareFaceButton; // Set text for share button
+            document.getElementById('animal-face-test-start-button').textContent = translations[currentLang].start;
+            shareAnimalFaceButton.textContent = translations[currentLang].shareAnimalFaceButton; // Set text for share button
         });
     </script>
 </body>

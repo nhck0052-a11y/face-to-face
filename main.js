@@ -7,6 +7,7 @@ const contactNavButton = document.getElementById('contact-nav-button');
 const contactSection = document.getElementById('contact-section');
 const contactCloseButton = document.getElementById('contact-close-button');
 const confettiCanvas = document.getElementById('confetti-canvas');
+const animalFaceTestNavButton = document.getElementById('animal-face-test-nav-button');
 
 const translations = {
     ko: {
@@ -35,23 +36,20 @@ const translations = {
         labelEmail: '이메일:',
         labelMessage: '메시지:',
         contactSubmit: '보내기',
-        faceTestNavButton: '관상 테스트',
-        faceTestTitle: '관상 테스트',
-        backToHome: '홈으로 돌아가기',
-        tmImageModel: 'Teachable Machine Image Model',
-        start: '시작',
-        faceDescriptions: {
-            '금상': '당신은 타고난 복을 지닌 관상입니다! 넓은 이마와 또렷한 눈빛은 지혜와 통찰력을, 두툼한 귓볼은 재물운을 상징합니다. 또한, 입꼬리가 살짝 올라가 있어 인덕이 많고 주변 사람들에게 행운을 가져다주는 길상입니다. 하는 일마다 술술 풀리고 사람들의 존경을 받는 리더의 상입니다. 앞으로 펼쳐질 성공적인 삶을 기대해도 좋습니다!',
-            '은상': '당신은 안정적이고 균형 잡힌 관상입니다! 단정하고 깔끔한 인상은 신뢰감을 주며, 부드러운 눈매는 온화한 성품을 나타냅니다. 코의 형태가 안정적이어서 재물운도 꾸준히 들어오는 편입니다. 큰 굴곡 없이 평탄하고 행복한 삶을 꾸려나갈 관상으로, 꾸준한 노력으로 더욱 발전할 수 있습니다. 작은 행운들이 당신을 기다리고 있습니다!',
-            '동상': '당신은 개성 넘치는 매력적인 관상입니다! 날카로운 눈매는 강한 추진력을, 개성 있는 코는 특별한 재능을 의미합니다. 때로는 고집이 세다는 인상을 줄 수 있지만, 이는 목표를 향한 강한 의지를 나타냅니다. 남들과는 다른 특별한 길을 개척하여 성공할 수 있는 관상입니다. 당신만의 독특한 매력으로 주변을 사로잡을 수 있습니다. 스스로를 믿고 나아가세요!'
+        animalFaceTestNavButton: '동물상 테스트',
+        animalFaceTestTitle: '동물상 테스트',
+        animalDescriptions: {
+            '개상': '당신은 충성스럽고 정이 많은 개상입니다! 크고 맑은 눈은 순수함을, 살짝 처진 눈꼬리는 온화함을 나타냅니다. 주변 사람들에게 편안함을 주며, 한번 마음 준 사람은 절대 배신하지 않는 의리의 상입니다. 긍정적이고 활발한 성격으로 어디서든 인기를 한 몸에 받습니다. 당신의 매력에 모두가 빠져들 거예요!',
+            '고양이상': '당신은 도도하고 매력적인 고양이상입니다! 날카로운 듯 올라간 눈꼬리는 섹시함을, 오똑한 콧대는 자신감을 보여줍니다. 신비로운 분위기로 사람들의 시선을 사로잡으며, 독립적이고 자기 주관이 뚜렷합니다. 때로는 까칠해 보이지만, 마음을 열면 누구보다 따뜻한 매력을 발산합니다. 당신의 시크한 매력에 많은 사람들이 반할 것입니다!',
+            '돼지상': '당신은 복스럽고 풍요로운 돼지상입니다! 둥글고 푸근한 인상은 재물운과 건강운을 동시에 상징합니다. 넉넉한 얼굴형은 사람들에게 편안함과 안정감을 주며, 먹을 복과 인복이 많아 항상 주변에 사람이 끊이지 않습니다. 낙천적이고 여유로운 성격으로 어떤 어려움도 현명하게 헤쳐나갑니다. 당신과 함께하는 모든 순간이 행복으로 가득 찰 거예요!'
         },
-        faceClassTranslations: {
-            '상': '금상',
-            '중': '은상',
-            '하': '동상'
+        animalClassTranslations: {
+            'Dog': '개상',
+            'Cat': '고양이상',
+            'Pig': '돼지상'
         },
-        shareFaceButton: '결과 공유하기',
-        shareFaceText: '방금 관상 테스트에서 "##RESULT##" 관상으로 나왔어요! ##DESCRIPTION##'
+        shareAnimalFaceButton: '결과 공유하기',
+        shareAnimalFaceText: '방금 동물상 테스트에서 "##RESULT##" 동물상으로 나왔어요! ##DESCRIPTION##'
     },
     en: {
         title: 'Lucky Draw',
@@ -79,23 +77,20 @@ const translations = {
         labelEmail: 'Email:',
         labelMessage: 'Message:',
         contactSubmit: 'Send',
-        faceTestNavButton: 'Face Test',
-        faceTestTitle: 'Face Test',
-        backToHome: 'Back to Home',
-        tmImageModel: 'Teachable Machine Image Model',
-        start: 'Start',
-        faceDescriptions: {
-            '금상': 'You possess a face of innate prosperity! A broad forehead and clear eyes symbolize wisdom and insight, while thick earlobes indicate wealth. Your gently upturned mouth corners suggest great personal charm, bringing luck to those around you. This is the mark of a respected leader who finds smooth success in all endeavors. Look forward to a successful life ahead!',
-            '은상': 'Yours is a balanced and stable face! Your neat and tidy appearance inspires trust, and soft eyes reveal a gentle nature. A steady nose shape indicates consistent financial fortune. This face suggests a smooth and happy life without major upheavals; continuous effort will bring further development. Small fortunes are awaiting you!',
-            '동상': 'You have a face of distinctive charm! Sharp eyes signify strong drive, and a unique nose suggests special talents. While sometimes perceived as stubborn, this reflects your strong will towards your goals. This face is destined to forge a unique path to success, captivating others with your individual charisma. Trust yourself and move forward!'
+        animalFaceTestNavButton: 'Animal Face Test',
+        animalFaceTestTitle: 'Animal Face Test',
+        animalDescriptions: {
+            'Dog': 'You have a loyal and affectionate Dog Face! Large, clear eyes signify purity, and slightly downturned eyes indicate gentleness. You bring comfort to those around you and never betray those you\'ve bonded with. Your positive and active personality makes you popular everywhere. Everyone will fall for your charm!',
+            'Cat': 'Yours is a haughty and charming Cat Face! Sharply upturned eyes suggest sexiness, and a high nose bridge shows confidence. You captivate attention with your mysterious aura, being independent and opinionated. Though sometimes appearing prickly, you radiate warmth once you open up. Many will be smitten by your chic charm!',
+            'Pig': 'You possess a fortunate and prosperous Pig Face! Your round and amiable features symbolize both wealth and health. Your generous face shape brings comfort and stability to others, and you are blessed with good fortune in food and relationships. Your optimistic and relaxed nature allows you to wisely navigate any difficulties. Every moment with you will be filled with happiness!'
         },
-        faceClassTranslations: {
-            '상': '금상',
-            '중': '은상',
-            '하': '동상'
+        animalClassTranslations: {
+            'Dog': 'Dog Face',
+            'Cat': 'Cat Face',
+            'Pig': 'Pig Face'
         },
-        shareFaceButton: 'Share Result',
-        shareFaceText: 'My face reading test result is "##RESULT##"! ##DESCRIPTION##'
+        shareAnimalFaceButton: 'Share Result',
+        shareAnimalFaceText: 'My animal face reading result is "##RESULT##"! ##DESCRIPTION##'
     }
 };
 
@@ -109,9 +104,9 @@ const setLanguage = (lang) => {
     document.getElementById('draw-button').textContent = translations[lang].drawButton;
     document.getElementById('share-button').textContent = translations[lang].shareButton;
     contactNavButton.textContent = translations[lang].contactNavButton;
-    document.getElementById('face-test-nav-button').textContent = translations[lang].faceTestNavButton;
+    animalFaceTestNavButton.textContent = translations[lang].animalFaceTestNavButton;
 
-    // Only update contact form specific elements if they exist (for face_test.html)
+    // Only update contact form specific elements if they exist (for contact_section)
     if (document.getElementById('contact-title')) {
         document.getElementById('contact-title').textContent = translations[lang].contactTitle;
         document.getElementById('label-name').textContent = translations[lang].labelName;

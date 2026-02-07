@@ -14,19 +14,18 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 ## New Feature: Partnership Inquiry Contact Form
 - **Formspree Integration**: A contact form for partnership inquiries, submitting data to Formspree.
 - **Form Fields**: Includes fields for Name, Email, and Message.
-- **Navigation**: A navigation link in the header allows users to easily access the contact form section.
+- **Navigation**: A navigation button for "제휴 문의" (Partnership Inquiry) in the main application's header (index.html), positioned in the top-left corner.
 
-## New Feature: Face Reading Test (Teachable Machine Integration)
-- **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/BqpR6ZHhi/`) for a face reading test.
-- **Input Method**: Changed from webcam to file upload, allowing users to upload an image for analysis.
-- **Real-time Prediction**: Displays real-time predictions from the Teachable Machine model based on the uploaded image.
-- **Enhanced Results Display**: Focuses on displaying only the highest probability prediction class, now with translated and engaging names (e.g., "금상", "은상", "동상" instead of "상", "중", "하").
-- **Detailed Expert Descriptions**: Provides elaborate descriptions for each face reading outcome, including mentions of specific facial features and their significance, presented in a more expert-like yet fun manner.
-- **Visual Effects**: Subtle animations are applied to the result text for a dynamic feel, and a confetti burst effect is triggered for top-tier ("금상") predictions to enhance excitement.
-- **Social Sharing**: Includes a "Share on Instagram" button, allowing users to easily share their face reading results with a generated text.
-- **Dedicated Page**: The feature resides on a separate page (`face_test.html`) to maintain separation of concerns.
-- **Navigation**: A navigation link in the main application's header (`index.html`) leads to this test page (positioned next to the partnership inquiry button), and a link on the test page allows users to return to the home page.
-- **Language Support**: All static text on the face test page is translatable (Korean/English).
+## New Feature: Animal Face Test (Teachable Machine Integration)
+- **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/ANIMAL_MODEL_PLACEHOLDER/`) for an animal face reading test, classifying faces into "개상" (Dog Face), "고양이상" (Cat Face), or "돼지상" (Pig Face).
+- **Input Method**: Uses file upload for image analysis.
+- **Real-time Prediction**: Displays predictions from the Teachable Machine model based on the uploaded image.
+- **Enhanced Results Display**: Focuses on displaying only the highest probability prediction class with translated, engaging names (e.g., "개상", "고양이상", "돼지상") and detailed, expert-like descriptions that include plausible facial feature analysis and their significance.
+- **Visual Effects**: A confetti burst effect is triggered for "개상" (Dog Face) predictions.
+- **Social Sharing**: Includes a "Share on Instagram" button, allowing users to easily share their animal face reading results.
+- **Dedicated Page**: The feature resides on a separate page (`animal_face_test.html`).
+- **Navigation**: A navigation button for "동물상 테스트" in the main application's header (index.html) leads to this test page, positioned in the top-left corner next to the "제휴문의" (Partnership Inquiry) button, and a link on the test page allows users to return to the home page.
+- **Language Support**: All static text on the animal face test page is translatable (Korean/English).
 
 ## Technologies Used
 - HTML5
