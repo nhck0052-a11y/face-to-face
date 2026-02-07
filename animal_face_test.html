@@ -57,7 +57,7 @@
 <body>
     <h1 id="animal-face-test-header"></h1>
     <div id="tm-image-model-text"></div>
-    <button type="button" id="animal-face-test-start-button" style="display: block;"></button>
+    <label for="file-input" id="animal-face-test-start-button" class="lang-button" style="display: block;"></label>
     <div id="loading-message" style="display: none; margin-top: 20px; font-size: 1.2em; color: #555;">잠시만 기다려주세요...</div>
     <input type="file" id="file-input" accept="image/*" style="display: none;">
     <div id="image-container">
@@ -81,7 +81,7 @@
         let model, labelContainer, maxPredictions;
         const imageCanvas = document.getElementById('image-canvas');
         const fileInput = document.getElementById('file-input');
-        const startButton = document.getElementById('animal-face-test-start-button');
+        const startButton = document.getElementById('animal-face-test-start-button'); // 이제 label 요소
         const animalDescriptionDiv = document.getElementById('animal-description');
         const shareAnimalFaceButton = document.getElementById('share-animal-face-button'); 
         const loadingMessage = document.getElementById('loading-message'); // 로딩 메시지 요소 참조
@@ -160,6 +160,11 @@
             }
         }
 
+        // startButton은 이제 label 태그이므로 직접 fileInput을 트리거하지 않고, label의 for 속성에 의해 자동 트리거됩니다.
+        startButton.addEventListener('click', () => {
+            fileInput.click(); 
+        });
+
         fileInput.addEventListener('change', async (event) => {
             const file = event.target.files[0];
             if (!file) {
@@ -202,7 +207,10 @@ ${shareText}`);
         });
 
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadModel();
+            // 로딩 메시지는 loadModel에서 제어하므로, DOMContentLoaded에서는 시작 버튼만 숨김
+            startButton.style.display = 'none'; // 모델 로드 전에는 시작 버튼 숨김
+            await loadModel(); // 모델 로드 시작
+
             labelContainer = document.getElementById("label-container");
             const localTranslations = {
                 ko: {

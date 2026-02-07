@@ -18,7 +18,7 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 
 ## New Feature: Animal Face Test (Teachable Machine Integration)
 - **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/NUCdwV0FQ/`) for an animal face reading test, classifying faces into "개상" (Dog Face), "고양이상" (Cat Face), or "돼지상" (Pig Face).
-- **Input Method**: Uses file upload for image analysis.
+- **Input Method**: Uses file upload for image analysis, now explicitly triggering the hidden file input via JavaScript when the label is clicked, ensuring better compatibility across mobile devices.
 - **Real-time Prediction**: Displays predictions from the Teachable Machine model based on the uploaded image.
 - **Enhanced Results Display**: Focuses on displaying only the highest probability prediction class with translated, engaging names (e.g., "개상", "고양이상", "돼지상") and detailed, expert-like descriptions that include plausible facial feature analysis and their significance.
 - **Visual Effects**: A confetti burst effect is triggered for "개상" (Dog Face) predictions.
@@ -56,7 +56,7 @@ To enable users to switch between Korean and English for all text content within
 
 ### Steps
 1.  **Examine existing project files (index.html, main.js, style.css, .idx/mcp.json).** (Completed)
-2.  **Update/Create blueprint.md with current project overview.** (In Progress)
+2.  **Update/Create blueprint.md with current project overview.** (Completed)
 3.  **Implement language selection UI in index.html.**
     *   Add a dropdown or buttons to the header or a suitable location for "한국어" and "English".
     *   Style the language selector in `style.css`.
