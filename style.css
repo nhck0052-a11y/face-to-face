@@ -107,6 +107,8 @@ h1#header-title { /* Targeting h1 moved to main content area */
 
 .draw-section {
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 #draw-button {
@@ -135,6 +137,8 @@ h1#header-title { /* Targeting h1 moved to main content area */
 
 .share-section {
     margin-top: 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 #share-button, #share-face-button {
