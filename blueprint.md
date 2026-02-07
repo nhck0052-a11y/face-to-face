@@ -26,6 +26,8 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 - **Dedicated Page**: The feature resides on a separate page (`animal_face_test.html`).
 - **Navigation**: A navigation button for "동물상 테스트" in the main application's header (index.html) leads to this test page, positioned in the top-left corner next to the "제휴문의" (Partnership Inquiry) button, and a link on the test page allows users to return to the home page.
 - **Language Support**: All static text on the animal face test page is translatable (Korean/English).
+- **Button Visibility Fix**: "이미지 업로드" 및 "홈으로 돌아가기" 버튼이 항상 올바르게 표시되도록 수정되었습니다.
+- **Loading Message Logic**: "잠시만 기다려주세요..." 로딩 메시지 로직이 더욱 명확하게 조정되어, 모델 로드 전에는 메시지를 표시하고 로드 완료 시 숨깁니다.
 
 ## Technologies Used
 - HTML5

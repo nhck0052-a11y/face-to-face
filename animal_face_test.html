@@ -57,7 +57,7 @@
 <body>
     <h1 id="animal-face-test-header"></h1>
     <div id="tm-image-model-text"></div>
-    <button type="button" id="animal-face-test-start-button"></button>
+    <button type="button" id="animal-face-test-start-button" style="display: block;"></button>
     <div id="loading-message" style="display: none; margin-top: 20px; font-size: 1.2em; color: #555;">잠시만 기다려주세요...</div>
     <input type="file" id="file-input" accept="image/*" style="display: none;">
     <div id="image-container">
@@ -108,7 +108,9 @@
                 console.error("Failed to load Teachable Machine model:", error);
                 alert("Teachable Machine 모델을 로드하는 데 실패했습니다. 네트워크 연결을 확인하거나 나중에 다시 시도해 주세요."); // User-friendly error message
             } finally {
-                loadingMessage.style.display = 'none'; // 모델 로드 완료 (성공 또는 실패) 시 메시지 숨김
+                // 모델 로드 완료 (성공 또는 실패) 시 로딩 메시지를 숨기고, 시작 버튼을 활성화
+                loadingMessage.style.display = 'none'; 
+                startButton.style.display = 'block'; // 모델 로드 후 시작 버튼 표시
             }
         }
 
@@ -204,7 +206,10 @@ ${shareText}`);
         });
 
         document.addEventListener('DOMContentLoaded', async () => {
-            await loadModel();
+            // 로딩 메시지는 loadModel에서 제어하므로, DOMContentLoaded에서는 시작 버튼만 숨김
+            startButton.style.display = 'none'; // 모델 로드 전에는 시작 버튼 숨김
+            await loadModel(); // 모델 로드 시작
+
             labelContainer = document.getElementById("label-container");
             const localTranslations = {
                 ko: {
@@ -242,7 +247,7 @@ ${shareText}`);
             document.getElementById('animal-face-test-header').textContent = translations[currentLang].animalFaceTestTitle;
             backToHomeButton.textContent = translations[currentLang].backToHome; // 홈으로 돌아가기 버튼 텍스트 설정
             document.getElementById('tm-image-model-text').textContent = translations[currentLang].tmImageModel;
-            document.getElementById('animal-face-test-start-button').textContent = translations[currentLang].start;
+            // startButton.textContent는 loadModel 후 설정되므로 여기서는 제외
             shareAnimalFaceButton.textContent = translations[currentLang].shareAnimalFaceButton; // Set text for share button
         });
     </script>
