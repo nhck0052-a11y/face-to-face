@@ -57,9 +57,9 @@
 <body>
     <h1 id="animal-face-test-header"></h1>
     <div id="tm-image-model-text"></div>
-    <label id="animal-face-test-start-button" class="lang-button" style="display: block; position: relative; overflow: hidden;">
-        <input type="file" id="file-input" accept="image/*" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
-    </label>
+    <button id="animal-face-test-start-button" class="lang-button" style="display: block;">
+        <input type="file" id="file-input" accept="image/*" style="display: none;">
+    </button>
     <div id="loading-message" style="display: none; margin-top: 20px; font-size: 1.2em; color: #555;">잠시만 기다려주세요...</div>
     <div id="image-container">
         <canvas id="image-canvas" style="display: none; max-width: 200px; max-height: 200px;"></canvas>
@@ -95,12 +95,16 @@
             ctx = imageCanvas.getContext('2d');
 
             const fileInput = document.getElementById('file-input');
-            const startButton = document.getElementById('animal-face-test-start-button'); // 이제 label 요소
+            const startButton = document.getElementById('animal-face-test-start-button'); // 이제 button 요소
             const animalDescriptionDiv = document.getElementById('animal-description');
             const shareAnimalFaceButton = document.getElementById('share-animal-face-button'); 
             const loadingMessage = document.getElementById('loading-message'); // 로딩 메시지 요소 참조
             const backToHomeButton = document.getElementById('back-to-home-button'); // 홈으로 돌아가기 버튼 참조
             labelContainer = document.getElementById("label-container"); // 전역 변수에 할당
+
+            startButton.addEventListener('click', () => {
+                fileInput.click(); // 버튼 클릭 시 input type="file" 트리거
+            });
 
             // Confetti setup - use the image-container as the origin for confetti
             myConfetti = confetti.create(document.getElementById('image-container'), {
@@ -112,16 +116,14 @@
             // Load the image model
             async function loadModel() {
                 loadingMessage.style.display = 'block'; // 모델 로드 시작 시 메시지 표시
-                startButton.style.pointerEvents = 'none'; // 모델 로드 중에는 버튼 클릭 방지
-                startButton.style.opacity = '0.5'; // 버튼을 비활성화된 것처럼 보이게 함 (CSS)
+                startButton.disabled = true; // 모델 로드 중에는 버튼 비활성화
                 try {
                     const modelURL = URL + "model.json";
                     const metadataURL = URL + "metadata.json";
                     model = await tmImage.load(modelURL, metadataURL);
                     maxPredictions = model.getTotalClasses();
                     startButton.style.display = 'block'; // 모델 로드 성공 시 버튼 표시
-                    startButton.style.pointerEvents = 'auto'; // 버튼 클릭 활성화
-                    startButton.style.opacity = '1'; // 버튼을 활성화된 것처럼 보이게 함 (CSS)
+                    startButton.disabled = false; // 모델 로드 성공 시 버튼 활성화
                 } catch (error) {
                     console.error("Failed to load Teachable Machine model:", error);
                     alert("Teachable Machine 모델을 로드하는 데 실패했습니다. 네트워크 연결을 확인하거나 나중에 다시 시도해 주세요."); // User-friendly error message
