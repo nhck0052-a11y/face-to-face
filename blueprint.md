@@ -1,26 +1,47 @@
+# Project Blueprint: Face-to-Face
 
-# 행운 당첨 사이트 Blueprint
+## Overview
+This project is a simple web-based "lucky draw" application. Users click a button to randomly receive a prize, which is then displayed on the screen along with a confetti animation. There's also an option to share the result on Instagram. The application is built using plain HTML, CSS, and JavaScript, and it leverages the `canvas-confetti` library for animations.
 
-## 개요
+## Current Features
+- **Lucky Draw Mechanism**: A button triggers a random selection from a predefined list of prizes.
+- **Confetti Animation**: A celebratory confetti effect is displayed upon winning a prize.
+- **Result Display**: The selected prize is shown to the user.
+- **Share Functionality**: Users can share their winning message on Instagram (simulated via an alert and opening a new tab).
+- **Basic Styling**: Responsive design with a clean, modern aesthetic.
+- **Firebase Configuration**: The project is pre-configured with Firebase for potential deployment.
 
-이 프로젝트의 목표는 모든 연령대의 사용자가 즐길 수 있는 재미있고 매력적인 행운 당첨 웹사이트를 만드는 것입니다. 사용자는 버튼을 클릭하여 상품을 뽑고 소셜 미디어에 결과를 공유할 수 있습니다.
+## Technologies Used
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- `canvas-confetti` library (via CDN)
 
-## 기능 및 디자인
+## Current Language
+The application is currently entirely in Korean.
 
-*   **헤더:** "행운을 시험해보세요!"와 같은 눈길을 끄는 헤드라인이 포함된 재미있는 글꼴입니다.
-*   **추첨 섹션:**
-    *   애니메이션과 시각 효과가 포함된 중앙 "추첨" 버튼.
-    *   결과가 표시될 때 색종이 조각 애니메이션.
-    *   다양한 상품 목록 (예: "영화 티켓", "커피 한 잔", "온라인 쇼핑 할인 쿠폰", "다음 여행 10% 할인").
-*   **공유 기능:** 사용자가 자신의 상품을 소셜 미디어(특히 인스타그램)에 공유할 수 있는 버튼입니다.
-*   **디자인:**
-    *   **색상 팔레트:** 생생하고 활기찬 색상 구성.
-    *   **글꼴:** 재미있고 읽기 쉬운 글꼴.
-    *   **레이아웃:** 모바일 우선 반응형 디자인.
-    *   **애니메이션:** 버튼 클릭, 상품 공개 및 기타 상호 작용에 대한 부드러운 애니메이션.
+## Plan for Current Request: Add Language Selection (Korean/English) and Deployment
 
-## 구현 계획
+### Objective
+To enable users to switch between Korean and English for all text content within the application and to provide deployment instructions using Firebase.
 
-1.  `index.html`: 사이트의 기본 구조를 설정합니다.
-2.  `style.css`: 사이트 스타일을 지정하고 반응형으로 만듭니다.
-3.  `main.js`: 추첨 논리, 애니메이션 및 공유 기능을 구현합니다.
+### Steps
+1.  **Examine existing project files (index.html, main.js, style.css, .idx/mcp.json).** (Completed)
+2.  **Update/Create blueprint.md with current project overview.** (In Progress)
+3.  **Implement language selection UI in index.html.**
+    *   Add a dropdown or buttons to the header or a suitable location for "한국어" and "English".
+    *   Style the language selector in `style.css`.
+4.  **Prepare translation data in main.js.**
+    *   Create a JavaScript object (`translations`) to store key-value pairs for all user-facing text, with nested objects for each language (e.g., `translations.ko`, `translations.en`).
+5.  **Implement language switching logic in main.js to update content.**
+    *   Add a function (`setLanguage`) that takes a language code (e.g., 'ko', 'en') as input.
+    *   This function will iterate through elements with a specific data attribute (e.g., `data-i18n-key`) and update their `textContent` based on the selected language and the `translations` object.
+    *   Store the user's language preference in `localStorage` to persist it across sessions.
+    *   Call `setLanguage` on page load based on `localStorage` or a default.
+6.  **Update existing content in index.html and main.js to use translation keys.**
+    *   Replace hardcoded Korean strings in `index.html` with `data-i18n-key` attributes.
+    *   Replace hardcoded Korean strings in `main.js` (e.g., prize names, alert messages) with references to the `translations` object.
+7.  **Configure Firebase Hosting by updating .idx/mcp.json.**
+    *   Verify that the `.idx/mcp.json` is correctly set up for Firebase as per `GEMINI.md` guidelines. (Already done)
+8.  **Provide instructions for deployment.**
+    *   Explain how to build (if necessary) and deploy the application using Firebase Hosting.
