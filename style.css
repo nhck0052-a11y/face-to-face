@@ -302,6 +302,13 @@ h1#header-title { /* Targeting h1 moved to main content area */
         padding: 5px 10px;
         font-size: 0.8em;
     }
+    
+    #back-to-home { /* Adjust size for mobile */
+        padding: 5px 10px;
+        font-size: 0.8em;
+        top: 10px;
+        left: 10px;
+    }
 
     #label-container div {
         font-size: 1.8em; /* Adjust result text size for mobile */

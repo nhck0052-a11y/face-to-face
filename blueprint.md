@@ -38,6 +38,7 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 ## Responsive Design Improvements
 - **Absolute Positioning for Nav Elements**: Navigation buttons (Partnership Inquiry, Animal Face Test) and language selectors are now absolutely positioned in the top-left and top-right corners respectively, ensuring consistent placement across devices.
 - **Media Queries for Mobile**: Implemented media queries to adjust the size and positioning of buttons and text for smaller screens, improving usability and layout on mobile devices.
+- **Back-to-Home Button Adjustment**: The "홈으로 돌아가기" button's size is also adjusted for mobile screens within media queries.
 - **Z-Index Management**: Carefully managed z-index of overlapping elements, especially for navigation buttons and the confetti canvas, to ensure all interactive elements are clickable.
 
 ## Current Language
