@@ -40,6 +40,7 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 - **Media Queries for Mobile**: Implemented media queries to adjust the size and positioning of buttons and text for smaller screens, improving usability and layout on mobile devices.
 - **Back-to-Home Button Adjustment**: The "홈으로 돌아가기" button's size is also adjusted for mobile screens within media queries.
 - **Back-to-Home Button Repositioning**: The "홈으로 돌아가기" button is now positioned at the bottom center of the animal face test page, making it more accessible on mobile devices.
+- **Back-to-Home Button Styling**: The "홈으로 돌아가기" button is now styled with a green background color and white text for better visibility and consistency.
 - **Loading Message for User Experience**: A "잠시만 기다려주세요..." loading message is displayed while the Teachable Machine model is loading, and it disappears once the model is ready or an image is selected, improving user experience.
 - **Z-Index Management**: Carefully managed z-index of overlapping elements, especially for navigation buttons and the confetti canvas, to ensure all interactive elements are clickable.
 
