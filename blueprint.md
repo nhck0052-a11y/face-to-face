@@ -18,7 +18,7 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 
 ## New Feature: Animal Face Test (Teachable Machine Integration)
 - **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/NUCdwV0FQ/`) for an animal face reading test, classifying faces into "개상" (Dog Face), "고양이상" (Cat Face), or "돼지상" (Pig Face).
-- **Input Method**: Uses file upload for image analysis, now explicitly triggering the hidden file input via JavaScript when the label is clicked, ensuring better compatibility across mobile devices.
+- **Input Method**: Uses file upload for image analysis. The hidden file input is now styled to be visually hidden but remain present in the DOM for better mobile compatibility and reliable programmatic clicking via the associated label.
 - **Real-time Prediction**: Displays predictions from the Teachable Machine model based on the uploaded image.
 - **Enhanced Results Display**: Focuses on displaying only the highest probability prediction class with translated, engaging names (e.g., "개상", "고양이상", "돼지상") and detailed, expert-like descriptions that include plausible facial feature analysis and their significance.
 - **Visual Effects**: A confetti burst effect is triggered for "개상" (Dog Face) predictions.
