@@ -168,3 +168,48 @@ const myConfetti = confetti.create(confettiCanvas, {
     resize: true,
     useWorker: true
 });
+
+drawButton.addEventListener('click', () => {
+    resultDiv.textContent = '';
+    resultDiv.dataset.prize = ''; // Clear stored prize
+    shareButton.style.display = 'none';
+
+    const prizesForCurrentLang = translations[currentLang].prizes; // Prizes for current language
+    const prizesKo = translations['ko'].prizes; // Original Korean prizes for consistent indexing
+
+    const randomIndex = Math.floor(Math.random() * prizesForCurrentLang.length);
+    const prize = prizesForCurrentLang[randomIndex]; // The selected prize in current language
+    const prizeKo = prizesKo[randomIndex]; // The corresponding original Korean prize
+
+    let count = 0;
+    const interval = setInterval(() => {
+        // Display random prizes in current language during animation
+        resultDiv.textContent = prizesForCurrentLang[Math.floor(Math.random() * prizesForCurrentLang.length)];
+        count++;
+        if (count > 20) {
+            clearInterval(interval);
+            resultDiv.textContent = `${translations[currentLang].resultPrefix}"${prize}"${translations[currentLang].resultSuffix}`;
+            resultDiv.dataset.prize = prizeKo; // Store original Korean prize for re-translation
+            shareButton.style.display = 'block';
+            myConfetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    }, 100);
+});
+
+shareButton.addEventListener('click', () => {
+    const prize = resultDiv.textContent;
+    if (prize && prize.includes(translations[currentLang].resultPrefix)) {
+        const shareText = `${translations[currentLang].shareText}${prize}`;
+        const shareUrl = 'https://www.instagram.com/';
+
+        alert(`인스타그램에 공유해보세요!\n\n${shareText}`);
+        window.open(shareUrl, '_blank');
+
+    } else {
+        alert(translations[currentLang].noPrizeAlert);
+    }
+});
