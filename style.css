@@ -4,7 +4,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     text-align: center;
@@ -14,21 +14,39 @@ body.body-no-scroll {
     overflow: hidden;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Space out language selector and nav buttons */
+    width: 100%;
+    padding: 10px 20px; /* Add some padding */
+    box-sizing: border-box; /* Include padding in width */
+    position: relative; /* For potential absolute children if needed later */
+}
+
 header h1 {
     font-size: 3em;
     color: #333;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 1rem;
-    position: relative;
+    margin: 0 auto; /* Center h1 horizontally within flex container */
+    white-space: nowrap; /* Prevent h1 from wrapping */
 }
 
 #language-selector {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    position: static; /* Remove absolute positioning */
     display: flex;
     gap: 10px;
+    /* Adjust margin to be part of the flex distribution */
 }
+
+/* Container for nav buttons (Partnership and Face Test) */
+.header-nav-buttons {
+    display: flex;
+    gap: 10px; /* Space between the buttons */
+    margin-left: 10px; /* Space from language selector, will be overridden by justify-content */
+}
+
 
 .lang-button {
     padding: 8px 15px;
@@ -134,10 +152,7 @@ header h1 {
 }
 
 #contact-nav-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: #28a745;
+    background-color: #28a745; /* Green color for these buttons */
     color: #fff;
     border-color: #28a745;
 }
