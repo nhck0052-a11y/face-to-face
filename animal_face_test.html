@@ -51,24 +51,7 @@
         button:hover {
             background-color: #0056b3;
         }
-        #back-to-home-button { /* Changed ID to distinguish from old anchor */
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            z-index: 1001; /* Ensure it's above other elements */
-        }
-        #back-to-home-button:hover {
-            background-color: #5a6268;
-        }
+        /* back-to-home-button style will be defined in style.css */
     </style>
 </head>
 <body>
@@ -83,6 +66,7 @@
     <div id="label-container"></div>
     <div id="animal-description" style="margin-top: 20px; font-size: 1.1em; color: #555;"></div>
     <button id="share-animal-face-button" style="display: none; margin-top: 20px;" class="lang-button"></button>
+    <button id="back-to-home-button" class="lang-button"></button>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -101,6 +85,7 @@
         const animalDescriptionDiv = document.getElementById('animal-description');
         const shareAnimalFaceButton = document.getElementById('share-animal-face-button'); 
         const loadingMessage = document.getElementById('loading-message'); // 로딩 메시지 요소 참조
+        const backToHomeButton = document.getElementById('back-to-home-button'); // 홈으로 돌아가기 버튼 참조
         let ctx = imageCanvas.getContext('2d');
         let translations; // Declare translations in a higher scope
         let lastPredictedResult = { originalClassName: '', translatedClassName: '', description: '' };
@@ -214,6 +199,10 @@ ${shareText}`);
             window.open(shareUrl, '_blank');
         });
 
+        backToHomeButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
         document.addEventListener('DOMContentLoaded', async () => {
             await loadModel();
             labelContainer = document.getElementById("label-container");
@@ -251,7 +240,7 @@ ${shareText}`);
             const currentLang = localStorage.getItem('lang') || 'ko';
             document.title = translations[currentLang].animalFaceTestTitle;
             document.getElementById('animal-face-test-header').textContent = translations[currentLang].animalFaceTestTitle;
-            document.getElementById('back-to-home-button').textContent = translations[currentLang].backToHome; // 홈으로 돌아가기 버튼 텍스트 설정
+            backToHomeButton.textContent = translations[currentLang].backToHome; // 홈으로 돌아가기 버튼 텍스트 설정
             document.getElementById('tm-image-model-text').textContent = translations[currentLang].tmImageModel;
             document.getElementById('animal-face-test-start-button').textContent = translations[currentLang].start;
             shareAnimalFaceButton.textContent = translations[currentLang].shareAnimalFaceButton; // Set text for share button
