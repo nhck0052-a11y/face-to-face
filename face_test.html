@@ -82,11 +82,11 @@
     <button id="share-face-button" style="display: none; margin-top: 20px;" class="lang-button"></button>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script type="text/javascript">
         // More API functions here:
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
-        // the link to your model provided by Teachable Machine export panel
         // the link to your model provided by Teachable Machine export panel
         const URL = "https://teachablemachine.withgoogle.com/models/BqpR6ZHhi/";
 
@@ -99,6 +99,12 @@
         let ctx = imageCanvas.getContext('2d');
         let translations; // Declare translations in a higher scope
         let lastPredictedResult = { className: '', description: '' }; // To store the last prediction
+        
+        // Confetti setup - use the image-container as the origin for confetti
+        const myConfetti = confetti.create(document.getElementById('image-container'), {
+            resize: true,
+            useWorker: true
+        });
 
         // Load the image model
         async function loadModel() {
@@ -138,6 +144,15 @@
             
             lastPredictedResult = { className: predictedClassName, description: description }; // Store result
             shareFaceButton.style.display = 'block'; // Show share button after prediction
+
+            // Trigger confetti for "상" class
+            if (predictedClassName === '상') {
+                myConfetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
         }
 
         startButton.addEventListener('click', () => {
@@ -192,9 +207,9 @@
                     tmImageModel: 'Teachable Machine Image Model',
                     start: '이미지 업로드',
                     faceDescriptions: {
-                        '상': '당신은 상위 1%의 관상입니다! 빛나는 앞날이 기대됩니다!',
-                        '중': '당신은 평범하지만 매력적인 관상입니다! 노력하면 빛을 볼 거예요!',
-                        '하': '당신은 독특한 매력의 관상입니다! 자신감을 가지세요!'
+                        '상': '당신은 타고난 복을 지닌 관상입니다! 넓은 이마와 또렷한 눈빛은 지혜와 통찰력을, 두툼한 귓볼은 재물운을 상징합니다. 또한, 입꼬리가 살짝 올라가 있어 인덕이 많고 주변 사람들에게 행운을 가져다주는 길상입니다. 하는 일마다 술술 풀리고 사람들의 존경을 받는 리더의 상입니다. 앞으로 펼쳐질 성공적인 삶을 기대해도 좋습니다!',
+                        '중': '당신은 안정적이고 균형 잡힌 관상입니다! 단정하고 깔끔한 인상은 신뢰감을 주며, 부드러운 눈매는 온화한 성품을 나타냅니다. 코의 형태가 안정적이어서 재물운도 꾸준히 들어오는 편입니다. 큰 굴곡 없이 평탄하고 행복한 삶을 꾸려나갈 관상으로, 꾸준한 노력으로 더욱 발전할 수 있습니다. 작은 행운들이 당신을 기다리고 있습니다!',
+                        '하': '당신은 개성 넘치는 매력적인 관상입니다! 날카로운 눈매는 강한 추진력을, 개성 있는 코는 특별한 재능을 의미합니다. 때로는 고집이 세다는 인상을 줄 수 있지만, 이는 목표를 향한 강한 의지를 나타냅니다. 남들과는 다른 특별한 길을 개척하여 성공할 수 있는 관상입니다. 당신만의 독특한 매력으로 주변을 사로잡을 수 있습니다. 스스로를 믿고 나아가세요!'
                     },
                     shareFaceButton: '결과 공유하기',
                     shareFaceText: '방금 관상 테스트에서 "##RESULT##" 관상으로 나왔어요! ##DESCRIPTION##'
@@ -205,9 +220,9 @@
                     tmImageModel: 'Teachable Machine Image Model',
                     start: 'Upload Image',
                     faceDescriptions: {
-                        '상': 'You have a top 1% face reading! A bright future awaits!',
-                        '중': 'You have an average but charming face reading! Efforts will pay off!',
-                        '하': 'You have a uniquely charming face reading! Be confident!'
+                        '상': 'You possess a face of innate prosperity! A broad forehead and clear eyes symbolize wisdom and insight, while thick earlobes indicate wealth. Your gently upturned mouth corners suggest great personal charm, bringing luck to those around you. This is the mark of a respected leader who finds smooth success in all endeavors. Look forward to a successful life ahead!',
+                        '중': 'Yours is a balanced and stable face! Your neat and tidy appearance inspires trust, and soft eyes reveal a gentle nature. A steady nose shape indicates consistent financial fortune. This face suggests a smooth and happy life without major upheavals; continuous effort will bring further development. Small fortunes are awaiting you!',
+                        '하': 'You have a face of distinctive charm! Sharp eyes signify strong drive, and a unique nose suggests special talents. While sometimes perceived as stubborn, this reflects your strong will towards your goals. This face is destined to forge a unique path to success, captivating others with your individual charisma. Trust yourself and move forward!'
                     },
                     shareFaceButton: 'Share Result',
                     shareFaceText: 'My face reading test result is "##RESULT##"! ##DESCRIPTION##'
