@@ -15,12 +15,6 @@
             padding-top: 20px;
             text-align: center;
         }
-        #webcam-container {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-        }
         #label-container {
             margin-top: 20px;
             font-size: 1.2em;
@@ -30,6 +24,18 @@
             padding: 5px;
             background-color: #f0f0f0;
             border-radius: 5px;
+        }
+        #image-container {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #image-canvas {
+            border-radius: 8px;
         }
         button {
             padding: 10px 20px;
@@ -66,8 +72,11 @@
     <a href="index.html" id="back-to-home"></a>
     <h1 id="face-test-header"></h1>
     <div id="tm-image-model-text"></div>
-    <button type="button" onclick="init()" id="face-test-start-button"></button>
-    <div id="webcam-container"></div>
+    <button type="button" id="face-test-start-button"></button>
+    <input type="file" id="file-input" accept="image/*" style="display: none;">
+    <div id="image-container">
+        <canvas id="image-canvas" style="display: none; max-width: 200px; max-height: 200px;"></canvas>
+    </div>
     <div id="label-container"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -78,45 +87,27 @@
         // the link to your model provided by Teachable Machine export panel
         const URL = "https://teachablemachine.withgoogle.com/models/BqpR6ZHhi/";
 
-        let model, webcam, labelContainer, maxPredictions;
+        let model, labelContainer, maxPredictions;
+        const imageCanvas = document.getElementById('image-canvas');
+        const fileInput = document.getElementById('file-input');
+        const startButton = document.getElementById('face-test-start-button');
+        let ctx = imageCanvas.getContext('2d');
 
-        // Load the image model and setup the webcam
-        async function init() {
+        // Load the image model
+        async function loadModel() {
             const modelURL = URL + "model.json";
             const metadataURL = URL + "metadata.json";
-
-            // load the model and metadata
-            // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-            // or files from your local hard drive
-            // Note: the pose library adds "tmImage" object to your window (window.tmImage)
             model = await tmImage.load(modelURL, metadataURL);
             maxPredictions = model.getTotalClasses();
-
-            // Convenience function to setup a webcam
-            const flip = true; // whether to flip the webcam
-            webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
-            await webcam.setup(); // request access to the webcam
-            await webcam.play();
-            window.requestAnimationFrame(loop);
-
-            // append elements to the DOM
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
-            labelContainer = document.getElementById("label-container");
-            for (let i = 0; i < maxPredictions; i++) { // and class labels
-                labelContainer.appendChild(document.createElement("div"));
-            }
         }
 
-        async function loop() {
-            webcam.update(); // update the webcam frame
-            await predict();
-            window.requestAnimationFrame(loop);
-        }
-
-        // run the webcam image through the image model
+        // Function to predict from an image
         async function predict() {
-            // predict can take in an image, video or canvas html element
-            const prediction = await model.predict(webcam.canvas);
+            if (!model) {
+                console.error("Model not loaded.");
+                return;
+            }
+            const prediction = await model.predict(imageCanvas);
             for (let i = 0; i < maxPredictions; i++) {
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -124,21 +115,53 @@
             }
         }
 
-        // Language initialization for face_test.html
-        document.addEventListener('DOMContentLoaded', () => {
+        startButton.addEventListener('click', () => {
+            fileInput.click(); // Trigger the file input click
+        });
+
+        fileInput.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (!file) {
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const img = new Image();
+                img.onload = async () => {
+                    // Resize image to 200x200 for the model
+                    imageCanvas.width = 200;
+                    imageCanvas.height = 200;
+                    ctx.drawImage(img, 0, 0, 200, 200);
+                    imageCanvas.style.display = 'block'; // Show the canvas
+                    labelContainer.innerHTML = ''; // Clear previous predictions
+                    for (let i = 0; i < maxPredictions; i++) {
+                        labelContainer.appendChild(document.createElement("div"));
+                    }
+                    await predict();
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Initialize on DOMContentLoaded to load model and setup UI
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadModel();
+            labelContainer = document.getElementById("label-container");
+            // Initial language setup
             const currentLang = localStorage.getItem('lang') || 'ko';
             const translations = {
                 ko: {
                     faceTestTitle: '관상 테스트',
                     backToHome: '홈으로 돌아가기',
                     tmImageModel: 'Teachable Machine Image Model',
-                    start: '시작'
+                    start: '이미지 업로드' // Changed to reflect file upload
                 },
                 en: {
                     faceTestTitle: 'Face Test',
                     backToHome: 'Back to Home',
                     tmImageModel: 'Teachable Machine Image Model',
-                    start: 'Start'
+                    start: 'Upload Image' // Changed to reflect file upload
                 }
             };
 
