@@ -2,113 +2,108 @@ body {
     font-family: 'Arial', sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Ensure body takes full viewport height */
+    justify-content: space-between; /* Pushes footer down */
+    min-height: 100vh;
     margin: 0;
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     text-align: center;
+    color: #333;
 }
 
 body.body-no-scroll {
     overflow: hidden;
 }
 
-/* Header is now essentially just a container for absolutely positioned elements */
-header {
-    width: 100%; /* Take full width */
-    position: absolute; /* Allow absolute positioning of children relative to viewport */
+/* --- Header --- */
+.site-header {
+    width: 100%;
+    padding: 1rem 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    position: sticky;
     top: 0;
-    left: 0;
-    height: 0; /* No height, purely for containing */
-    z-index: 999; /* Ensure header elements are above main content */
+    z-index: 1000;
 }
 
-/* Top-left navigation buttons */
-#top-left-nav {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.site-header__wrapper {
     display: flex;
-    gap: 10px;
-    z-index: 1000; /* Ensure clickable */
-    pointer-events: auto; /* Explicitly enable pointer events */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* Top-right language selector */
-#top-right-nav {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+.site-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.nav {
     display: flex;
-    gap: 10px;
-    z-index: 1000; /* Ensure clickable */
-    pointer-events: auto; /* Explicitly enable pointer events */
+    align-items: center;
+    gap: 15px;
 }
 
-/* Ensure main content does not interfere with z-index of navs */
+.nav__link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.nav__link:hover {
+    background-color: #e9ecef;
+}
+
+/* --- Main Content --- */
 main {
-    position: relative; /* Establish stacking context */
-    /* z-index: 1; /* Lower than navs - REMOVED */
+    flex-grow: 1; /* Takes up available space */
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-h1#header-title { /* Targeting h1 moved to main content area */
+.intro-section {
+    margin-bottom: 3rem;
+}
+
+h1#header-title {
     font-size: 3em;
     color: #333;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 1rem;
-    white-space: nowrap; /* Prevent h1 from wrapping */
 }
 
-
-.lang-button {
-    padding: 8px 15px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    font-size: 1em;
-    transition: all 0.2s ease;
-}
-
-.lang-button:hover {
-    background-color: #e0e0e0;
-    border-color: #999;
-}
-
-.lang-button.active {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-}
-
-/* Animation for result text */
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-#label-container div {
-    animation: fadeInScale 0.5s ease-out forwards;
-    font-size: 2.5em; /* Make it larger */
-    font-weight: bold; /* Make it bolder */
-    color: #007bff; /* A prominent color */
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #e9f7ff; /* Light background for prominence */
+.site-description {
+    font-size: 1.2em;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
 }
 
 .draw-section {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     margin-bottom: 2rem;
-    position: relative;
-    z-index: 2;
+}
+
+#lucky-draw-title {
+    font-size: 2em;
+    margin-bottom: 0.5rem;
+}
+
+#lucky-draw-description {
+    margin-bottom: 1.5rem;
+    color: #666;
 }
 
 #draw-button {
@@ -137,25 +132,13 @@ h1#header-title { /* Targeting h1 moved to main content area */
 
 .share-section {
     margin-top: 1rem;
-    position: relative;
-    z-index: 2;
 }
 
 #share-button, #share-face-button {
-    background-color: #28a745; /* Green color for share buttons */
-    border-color: #28a745;
-}
-
-#share-button:hover, #share-face-button:hover {
-    background-color: #218838;
-    border-color: #218838;
-}
-
-#share-button {
     padding: 0.8rem 1.5rem;
     font-size: 1em;
     color: #fff;
-    background-color: #007bff;
+    background-color: #28a745;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -163,69 +146,93 @@ h1#header-title { /* Targeting h1 moved to main content area */
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-#share-button:hover {
+#share-button:hover, #share-face-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
-#contact-nav-button {
-    background-color: #28a745; /* Green color for these buttons */
-    color: #fff;
-    border-color: #28a745;
+/* --- Footer --- */
+.site-footer {
+    width: 100%;
+    padding: 2rem 0;
+    background-color: #343a40;
+    color: #f8f9fa;
 }
 
-#contact-nav-button:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
+.site-footer__wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
 }
 
-#back-to-home-button { /* Home button for animal_face_test.html */
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #28a745; /* Green color */
+.site-footer a {
     color: #fff;
-    border-color: #28a745;
-    padding: 10px 20px;
-    font-size: 1em;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.site-footer p {
+    margin-top: 1rem;
+    font-size: 0.9em;
+    color: #adb5bd;
+}
+
+
+/* --- Language and Contact Buttons --- */
+.lang-button, #contact-nav-button {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
     border-radius: 20px;
+    background-color: #f0f0f0;
     cursor: pointer;
-    z-index: 1001; /* Ensure it's above other elements */
+    font-size: 1em;
+    color: #333;
+    transition: all 0.2s ease;
 }
 
-#back-to-home-button:hover {
-    background-color: #218838;
-    border-color: #218838;
+.lang-button:hover, #contact-nav-button:hover {
+    background-color: #e0e0e0;
+    border-color: #999;
 }
 
+.lang-button.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* --- Contact Modal --- */
 .contact-section {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 10; /* Sit on top */
+    display: none;
+    position: fixed;
+    z-index: 1001;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
     justify-content: center;
     align-items: center;
     padding: 20px;
-    box-sizing: border-box; /* Include padding in width/height */
+    box-sizing: border-box;
 }
 
 .contact-section.active {
-    display: flex; /* Show when active */
+    display: flex;
 }
 
-.contact-section .contact-form-container { /* A container for the form content */
+.contact-section .contact-form-container {
     background-color: #fefefe;
-    margin: auto; /* Center the modal */
+    margin: auto;
     padding: 30px;
-    border: 1px solid #888;
     border-radius: 10px;
-    width: 90%; /* Could be more responsive */
+    width: 90%;
     max-width: 500px;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -246,15 +253,11 @@ h1#header-title { /* Targeting h1 moved to main content area */
 .close-button:hover,
 .close-button:focus {
     color: #000;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 .contact-section h2 {
     font-size: 2em;
-    color: #333;
     margin-bottom: 1.5rem;
-    text-align: center;
 }
 
 #contact-form label {
@@ -262,6 +265,7 @@ h1#header-title { /* Targeting h1 moved to main content area */
     margin-bottom: 0.5rem;
     font-weight: bold;
     color: #555;
+    text-align: left;
 }
 
 #contact-form input[type="text"],
@@ -273,15 +277,10 @@ h1#header-title { /* Targeting h1 moved to main content area */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
-    box-sizing: border-box; /* Ensures padding doesn't increase width */
-}
-
-#contact-form textarea {
-    resize: vertical;
+    box-sizing: border-box;
 }
 
 #contact-form button[type="submit"] {
-    display: block;
     width: 100%;
     padding: 1rem;
     font-size: 1.2em;
@@ -299,37 +298,26 @@ h1#header-title { /* Targeting h1 moved to main content area */
 
 /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-    #top-left-nav {
-        top: 10px;
-        left: 10px;
-        flex-direction: column; /* Stack buttons vertically */
-        gap: 5px;
+    .site-header__wrapper {
+        flex-direction: column;
+        gap: 15px;
     }
-
-    #top-right-nav {
-        top: 10px;
-        right: 10px;
-        flex-direction: column; /* Stack buttons vertically */
-        gap: 5px;
+    
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     h1#header-title {
-        font-size: 2em; /* Smaller font size for mobile */
-        margin-top: 80px; /* Push down h1 to avoid overlap with buttons */
+        font-size: 2em;
     }
 
-    .lang-button {
-        padding: 5px 10px;
-        font-size: 0.8em;
-    }
-    
-    #back-to-home-button { /* Adjust size for mobile */
-        padding: 8px 15px; /* Adjust padding */
-        font-size: 0.9em; /* Adjust font size */
-        bottom: 10px; /* Adjust position for mobile */
+    .site-description {
+        font-size: 1em;
     }
 
-    #label-container div {
-        font-size: 1.8em; /* Adjust result text size for mobile */
+    #draw-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.2em;
     }
 }

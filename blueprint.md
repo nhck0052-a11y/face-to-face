@@ -1,82 +1,54 @@
 # Project Blueprint: Face-to-Face
 
 ## Overview
-This project is a simple web-based "lucky draw" application. Users click a button to randomly receive a prize, which is then displayed on the screen along with a confetti animation. There's also an option to share the result on Instagram. The application is built using plain HTML, CSS, and JavaScript, and it leverages the `canvas-confetti` library for animations.
+This project is a user-friendly, interactive web application designed to provide entertainment and fun through two main features: a "Lucky Draw" game and an AI-powered "Animal Face Test." The site has been significantly enhanced to meet Google AdSense quality guidelines, featuring a professional and consistent design, clear navigation, substantial content, and important trust-building pages like "About Us" and a "Privacy Policy." The application is fully bilingual (Korean/English) and responsive.
 
-## Current Features
-- **Lucky Draw Mechanism**: A button triggers a random selection from a predefined list of prizes.
-- **Confetti Animation**: A celebratory confetti effect is displayed upon winning a prize.
-- **Result Display**: The selected prize is shown to the user.
-- **Share Functionality**: Users can share their winning message on Instagram (simulated via an alert and opening a new tab).
-- **Basic Styling**: Responsive design with a clean, modern aesthetic.
-- **Firebase Configuration**: The project is pre-configured with Firebase for potential deployment.
+## High-Quality Site Enhancements for AdSense
+To align with AdSense program policies and best practices for creating a high-quality site, the following major improvements have been implemented:
 
-## New Feature: Partnership Inquiry Contact Form
-- **Formspree Integration**: A contact form for partnership inquiries, submitting data to Formspree.
-- **Form Fields**: Includes fields for Name, Email, and Message.
-- **Navigation**: A navigation button for "제휴 문의" (Partnership Inquiry) in the main application's header (index.html), positioned in the top-left corner.
+- **Creation of Essential Pages:**
+    - **`about.html`:** An "About Us" page has been created to clearly explain the website's purpose, its features, and its mission to provide enjoyable content.
+    - **`privacy.html`:** A comprehensive "Privacy Policy" page has been added, detailing data handling practices (including for the contact form and Google AdSense), which is a critical factor for user trust and AdSense approval.
 
-## New Feature: Animal Face Test (Teachable Machine Integration)
-- **Teachable Machine Model Integration**: Integrates a Teachable Machine Image Model (URL: `https://teachablemachine.withgoogle.com/models/NUCdwV0FQ/`) for an animal face reading test, classifying faces into "개상" (Dog Face), "고양이상" (Cat Face), or "돼지상" (Pig Face).
-- **Input Method**: Uses file upload for image analysis. The "Upload Image" button is now an `<button>` tag (instead of a `<label>`). An `input type="file"` element, hidden with `display: none;`, is explicitly triggered via JavaScript when the button is clicked. This robust approach maximizes compatibility and reliability for file selection across both mobile and desktop environments, especially circumventing mobile browser restrictions that can affect `<label>`-based activations.
-- **JavaScript Code Restructuring**: To ensure reliable DOM element referencing and event listener registration, all DOM-related variable declarations (e.g., `fileInput`, `startButton`) and their associated event listeners, along with `loadModel` and `predict` functions, have been moved inside the `DOMContentLoaded` event handler. This optimizes variable scope and guarantees that JavaScript interacts with fully loaded DOM elements, further enhancing cross-browser and mobile compatibility.
-- **Model Loading Error Handling**: The `loadModel` function now robustly handles model loading. The "Upload Image" button (startButton) is disabled (`disabled=true`) while the model is loading. Upon successful model loading, the button is displayed and re-enabled (`disabled=false`), preventing users from attempting predictions with an uninitialized model. If model loading fails, the button is hidden (`display: none;`), and an alert is shown, improving the overall user experience and error recovery.
-- **Real-time Prediction**: Displays predictions from the Teachable Machine model based on the uploaded image.
-- **Enhanced Results Display**: Focuses on displaying only the highest probability prediction class with translated, engaging names (e.g., "개상", "고양이상", "돼지상") and detailed, expert-like descriptions that include plausible facial feature analysis and their significance.
-- **Visual Effects**: A confetti burst effect is triggered for "개상" (Dog Face) predictions.
-- **Social Sharing**: Includes a "Share on Instagram" button, allowing users to easily share their animal face reading results.
-- **Dedicated Page**: The feature resides on a separate page (`animal_face_test.html`).
-- **Navigation**: A navigation button for "동물상 테스트" in the main application's header (index.html) leads to this test page, positioned in the top-left corner next to the "제휴문의" (Partnership Inquiry) button, and a link on the test page allows users to return to the home page.
-- **Language Support**: All static text on the animal face test page is translatable (Korean/English).
-- **Button Visibility Fix**: "이미지 업로드" 및 "홈으로 돌아가기" 버튼이 항상 올바르게 표시되도록 수정되었습니다.
-- **Loading Message Logic**: "잠시만 기다려주세요..." 로딩 메시지 로직이 더욱 명확하게 조정되어, 모델 로드 전에는 메시지를 표시하고 로드 완료 시 숨깁니다.
+- **Improved Site Structure & Navigation:**
+    - **Consistent Header:** A sticky navigation header has been implemented across all pages (`index.html`, `animal_face_test.html`, `about.html`, `privacy.html`), featuring the site title, and links to major sections ("Animal Face Test," "About Us"), language selectors, and a contact button.
+    - **Consistent Footer:** A site-wide footer has been added, containing links to the "About Us" and "Privacy Policy" pages, and a copyright notice.
+    - This unified structure provides a predictable and user-friendly navigation experience.
 
-## Technologies Used
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- `canvas-confetti` library (via CDN)
-- Formspree for form submission handling
-- TensorFlow.js and Teachable Machine Image library for the AI model.
+- **Enhanced Content Quantity and Quality:**
+    - **Home Page (`index.html`):** The main page now includes a detailed introduction to the website and its features, providing users with clear, valuable information upfront. The "Lucky Draw" section also has more descriptive text.
+    - **Animal Face Test Page (`animal_face_test.html`):** This page now includes a proper title and a description of the feature, enriching the user's understanding and increasing the page's content.
 
-## Responsive Design Improvements
-- **Absolute Positioning for Nav Elements**: Navigation buttons (Partnership Inquiry, Animal Face Test) and language selectors are now absolutely positioned in the top-left and top-right corners respectively, ensuring consistent placement across devices.
-- **Media Queries for Mobile**: Implemented media queries to adjust the size and positioning of buttons and text for smaller screens, improving usability and layout on mobile devices.
-- **Back-to-Home Button Adjustment**: The "홈으로 돌아가기" button's size is also adjusted for mobile screens within media queries.
-- **Back-to-Home Button Repositioning**: The "홈으로 돌아가기" button is now positioned at the bottom center of the animal face test page, making it more accessible on mobile devices.
-- **Back-to-Home Button Styling**: The "홈으로 돌아가기" button is now styled with a green background color and white text for better visibility and consistency.
-- **Loading Message for User Experience**: A "잠시만 기다려주세요..." loading message is displayed while the Teachable Machine model is loading, and it disappears once the model is ready or an image is selected, improving user experience.
-- **Z-Index Management**: Carefully managed z-index of overlapping elements, especially for navigation buttons and the confetti canvas, to ensure all interactive elements are clickable.
+## Core Features
+
+- **Lucky Draw Game (`index.html`):**
+    - Users can click a "Draw" button to receive a random prize from a predefined list.
+    - A celebratory confetti animation is displayed upon winning.
+    - A "Share" button allows users to share their results.
+
+- **Animal Face Test (`animal_face_test.html`):**
+    - **AI Model Integration:** Integrates a Teachable Machine Image Model to classify user-uploaded photos into different "animal faces" (e.g., Dog, Cat, Pig).
+    - **Robust File Upload:** The image upload functionality is implemented via a standard `<button>` that programmatically triggers a hidden `<input type="file">`. This ensures maximum compatibility across desktop and mobile browsers.
+    - **Error Handling:** The `loadModel` function is enhanced to prevent users from attempting to upload an image before the AI model is fully loaded. The upload button is `disabled` during loading and hidden if loading fails.
+    - **Rich Results:** The test displays the resulting animal face type along with a detailed, engaging description of its characteristics.
+
+- **Bilingual Support (Korean/English):**
+    - All text content across the entire site, including navigation, footers, and dynamically generated content, is translatable.
+    - The user's language preference is saved in `localStorage` to persist across sessions.
+
+- **Contact Form:**
+    - A modal-based contact form for partnership inquiries, submitting data to Formspree.
 
 ## Google AdSense Integration
 - **AdSense Script**: The Google AdSense script and meta tag have been added to the `<head>` section of both `index.html` and `animal_face_test.html` for ad serving and account verification.
-- **ads.txt**: An `ads.txt` file has been created in the root directory to authorize ad sellers.
+- **`ads.txt`**: An `ads.txt` file has been created in the root directory to authorize ad sellers.
 
-## Current Language
-The application is currently entirely in Korean.
+## Technologies Used
+- HTML5, CSS3, JavaScript (ES6+)
+- `canvas-confetti` library (via CDN)
+- Formspree for form submission
+- TensorFlow.js and Teachable Machine Image library for the AI model
 
-## Plan for Current Request: Add Language Selection (Korean/English) and Deployment
-
-### Objective
-To enable users to switch between Korean and English for all text content within the application and to provide deployment instructions using Firebase.
-
-### Steps
-1.  **Examine existing project files (index.html, main.js, style.css, .idx/mcp.json).** (Completed)
-2.  **Update/Create blueprint.md with current project overview.** (Completed)
-3.  **Implement language selection UI in index.html.**
-    *   Add a dropdown or buttons to the header or a suitable location for "한국어" and "English".
-    *   Style the language selector in `style.css`.
-4.  **Prepare translation data in main.js.**
-    *   Create a JavaScript object (`translations`) to store key-value pairs for all user-facing text, with nested objects for each language (e.g., `translations.ko`, `translations.en`).
-5.  **Implement language switching logic in main.js to update content.**
-    *   Add a function (`setLanguage`) that takes a language code (e.g., 'ko', 'en') as input.
-    *   This function will iterate through elements with a specific data attribute (e.g., `data-i18n-key`) and update their `textContent` based on the selected language and the `translations` object.
-    *   Store the user's language preference in `localStorage` to persist it across sessions.
-    *   Call `setLanguage` on page load based on `localStorage` or a default.
-6.  **Update existing content in index.html and main.js to use translation keys.**
-    *   Replace hardcoded Korean strings in `index.html` with `data-i18n-key` attributes.
-    *   Replace hardcoded Korean strings in `main.js` (e.g., prize names, alert messages) with references to the `translations` object.
-7.  **Configure Firebase Hosting by updating .idx/mcp.json.**
-    *   Verify that the `.idx/mcp.json` is correctly set up for Firebase as per `GEMINI.md` guidelines. (Already done)
-8.  **Provide instructions for deployment.**
-    *   Explain how to build (if necessary) and deploy the application using Firebase Hosting.
+## Code-level Improvements
+- **JavaScript Refactoring:** All page-specific JavaScript, including DOM element selections and event listeners, is now wrapped in a `DOMContentLoaded` event handler. This ensures that the script only executes after the DOM is fully parsed and ready, preventing race conditions and improving reliability.
+- **CSS Restructuring:** The stylesheet has been overhauled to support the new site structure, removing obsolete rules and adding new styles for the header, footer, and navigation to create a clean, modern, and responsive design.
