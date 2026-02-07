@@ -50,5 +50,24 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="main.js"></script>
     <canvas id="confetti-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -999;"></canvas>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const deployButton = document.createElement('button');
+        deployButton.textContent = '배포';
+        deployButton.id = 'deploy-button';
+        deployButton.classList.add('lang-button'); // Use existing button style
+        
+        // Add style for deploy button position
+        deployButton.style.position = 'absolute';
+        deployButton.style.bottom = '20px';
+        deployButton.style.right = '20px';
+        deployButton.style.zIndex = '1000';
+
+        deployButton.onclick = () => {
+            alert('Firebase Studio에서 배포를 진행해주세요! 배포 버튼은 CLI 환경에서 직접 작동하지 않습니다.');
+        };
+        document.body.appendChild(deployButton);
+    });
+</script>
 </body>
 </html>

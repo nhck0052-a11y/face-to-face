@@ -43,11 +43,6 @@ const translations = {
             '고양이상': '당신은 도도하고 매력적인 고양이상입니다! 날카로운 듯 올라간 눈꼬리는 섹시함을, 오똑한 콧대는 자신감을 보여줍니다. 신비로운 분위기로 사람들의 시선을 사로잡으며, 독립적이고 자기 주관이 뚜렷합니다. 때로는 까칠해 보이지만, 마음을 열면 누구보다 따뜻한 매력을 발산합니다. 당신의 시크한 매력에 많은 사람들이 반할 것입니다!',
             '돼지상': '당신은 복스럽고 풍요로운 돼지상입니다! 둥글고 푸근한 인상은 재물운과 건강운을 동시에 상징합니다. 넉넉한 얼굴형은 사람들에게 편안함과 안정감을 주며, 먹을 복과 인복이 많아 항상 주변에 사람이 끊이지 않습니다. 낙천적이고 여유로운 성격으로 어떤 어려움도 현명하게 헤쳐나갑니다. 당신과 함께하는 모든 순간이 행복으로 가득 찰 거예요!'
         },
-        animalClassTranslations: {
-            'Dog': '개상',
-            'Cat': '고양이상',
-            'Pig': '돼지상'
-        },
         shareAnimalFaceButton: '결과 공유하기',
         shareAnimalFaceText: '방금 동물상 테스트에서 "##RESULT##" 동물상으로 나왔어요! ##DESCRIPTION##'
     },
@@ -80,14 +75,9 @@ const translations = {
         animalFaceTestNavButton: 'Animal Face Test',
         animalFaceTestTitle: 'Animal Face Test',
         animalDescriptions: {
-            'Dog': 'You have a loyal and affectionate Dog Face! Large, clear eyes signify purity, and slightly downturned eyes indicate gentleness. You bring comfort to those around you and never betray those you\'ve bonded with. Your positive and active personality makes you popular everywhere. Everyone will fall for your charm!',
-            'Cat': 'Yours is a haughty and charming Cat Face! Sharply upturned eyes suggest sexiness, and a high nose bridge shows confidence. You captivate attention with your mysterious aura, being independent and opinionated. Though sometimes appearing prickly, you radiate warmth once you open up. Many will be smitten by your chic charm!',
-            'Pig': 'You possess a fortunate and prosperous Pig Face! Your round and amiable features symbolize both wealth and health. Your generous face shape brings comfort and stability to others, and you are blessed with good fortune in food and relationships. Your optimistic and relaxed nature allows you to wisely navigate any difficulties. Every moment with you will be filled with happiness!'
-        },
-        animalClassTranslations: {
-            'Dog': 'Dog Face',
-            'Cat': 'Cat Face',
-            'Pig': 'Pig Face'
+            '개상': 'You have a loyal and affectionate Dog Face! Large, clear eyes signify purity, and slightly downturned eyes indicate gentleness. You bring comfort to those around you and never betray those you\'ve bonded with. Your positive and active personality makes you popular everywhere. Everyone will fall for your charm!',
+            '고양이상': 'Yours is a haughty and charming Cat Face! Sharply upturned eyes suggest sexiness, and a high nose bridge shows confidence. You captivate attention with your mysterious aura, being independent and opinionated. Though sometimes appearing prickly, you radiate warmth once you open up. Many will be smitten by your chic charm!',
+            '돼지상': 'You possess a fortunate and prosperous Pig Face! Your round and amiable features symbolize both wealth and health. Your generous face shape brings comfort and stability to others, and you are blessed with good fortune in food and relationships. Your optimistic and relaxed nature allows you to wisely navigate any difficulties. Every moment with you will be filled with happiness!'
         },
         shareAnimalFaceButton: 'Share Result',
         shareAnimalFaceText: 'My animal face reading result is "##RESULT##"! ##DESCRIPTION##'
@@ -153,6 +143,9 @@ contactSection.addEventListener('click', (event) => {
         document.body.classList.remove('body-no-scroll');
     }
 });
+animalFaceTestNavButton.addEventListener('click', () => {
+    window.location.href = 'animal_face_test.html';
+});
 
 
 // Initialize language on page load
@@ -185,12 +178,13 @@ drawButton.addEventListener('click', () => {
             clearInterval(interval);
             resultDiv.textContent = `${translations[currentLang].resultPrefix}"${prize}"${translations[currentLang].resultSuffix}`;
             resultDiv.dataset.prize = prizeKo; // Store original Korean prize for re-translation
-            shareButton.style.display = 'block';
             myConfetti({
                 particleCount: 100,
                 spread: 70,
                 origin: { y: 0.6 }
             });
+            // Show share button only after the result is final
+            shareButton.style.display = 'block';
         }
     }, 100);
 });
