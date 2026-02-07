@@ -65,6 +65,13 @@ header h1 {
 
 #label-container div {
     animation: fadeInScale 0.5s ease-out forwards;
+    font-size: 2.5em; /* Make it larger */
+    font-weight: bold; /* Make it bolder */
+    color: #007bff; /* A prominent color */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #e9f7ff; /* Light background for prominence */
 }
 
 .draw-section {

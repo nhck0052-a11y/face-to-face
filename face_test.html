@@ -98,7 +98,7 @@
         const shareFaceButton = document.getElementById('share-face-button'); // Get button reference
         let ctx = imageCanvas.getContext('2d');
         let translations; // Declare translations in a higher scope
-        let lastPredictedResult = { className: '', description: '' }; // To store the last prediction
+        let lastPredictedResult = { originalClassName: '', translatedClassName: '', description: '' }; // To store the last prediction
         
         // Confetti setup - use the image-container as the origin for confetti
         const myConfetti = confetti.create(document.getElementById('image-container'), {
@@ -122,31 +122,37 @@
             }
             const prediction = await model.predict(imageCanvas);
             let highestProbability = 0;
-            let predictedClassName = '';
+            let originalPredictedClassName = ''; // Store the original class name from the model
 
             for (let i = 0; i < maxPredictions; i++) {
                 if (prediction[i].probability > highestProbability) {
                     highestProbability = prediction[i].probability;
-                    predictedClassName = prediction[i].className;
+                    originalPredictedClassName = prediction[i].className;
                 }
             }
             
+            // Get current language and translations
+            const currentLang = localStorage.getItem('lang') || 'ko';
+            const translatedClassName = translations[currentLang].faceClassTranslations[originalPredictedClassName] || originalPredictedClassName;
+            const description = translations[currentLang].faceDescriptions[translatedClassName];
+
             // Clear previous predictions (if any) and set only the highest one
             labelContainer.innerHTML = '';
             const resultDiv = document.createElement("div");
-            resultDiv.innerHTML = predictedClassName; // Only show the class name, not probability
+            resultDiv.innerHTML = translatedClassName; // Display the translated class name
             labelContainer.appendChild(resultDiv);
 
-            // Get current language and descriptions from the translations object
-            const currentLang = localStorage.getItem('lang') || 'ko';
-            const description = translations[currentLang].faceDescriptions[predictedClassName];
             faceDescriptionDiv.textContent = description || ''; // Display the description or empty string
             
-            lastPredictedResult = { className: predictedClassName, description: description }; // Store result
+            lastPredictedResult = { 
+                originalClassName: originalPredictedClassName,
+                translatedClassName: translatedClassName,
+                description: description 
+            };
             shareFaceButton.style.display = 'block'; // Show share button after prediction
 
-            // Trigger confetti for "상" class
-            if (predictedClassName === '상') {
+            // Trigger confetti for "상" (original class name)
+            if (originalPredictedClassName === '상') {
                 myConfetti({
                     particleCount: 100,
                     spread: 70,
@@ -187,7 +193,7 @@
             const currentLang = localStorage.getItem('lang') || 'ko';
             const shareTextTemplate = translations[currentLang].shareFaceText;
             const shareText = shareTextTemplate
-                .replace('##RESULT##', lastPredictedResult.className)
+                .replace('##RESULT##', lastPredictedResult.translatedClassName) // Use translated class name
                 .replace('##DESCRIPTION##', lastPredictedResult.description);
             const shareUrl = 'https://www.instagram.com/'; // Placeholder for Instagram share
 
@@ -207,9 +213,14 @@
                     tmImageModel: 'Teachable Machine Image Model',
                     start: '이미지 업로드',
                     faceDescriptions: {
-                        '상': '당신은 타고난 복을 지닌 관상입니다! 넓은 이마와 또렷한 눈빛은 지혜와 통찰력을, 두툼한 귓볼은 재물운을 상징합니다. 또한, 입꼬리가 살짝 올라가 있어 인덕이 많고 주변 사람들에게 행운을 가져다주는 길상입니다. 하는 일마다 술술 풀리고 사람들의 존경을 받는 리더의 상입니다. 앞으로 펼쳐질 성공적인 삶을 기대해도 좋습니다!',
-                        '중': '당신은 안정적이고 균형 잡힌 관상입니다! 단정하고 깔끔한 인상은 신뢰감을 주며, 부드러운 눈매는 온화한 성품을 나타냅니다. 코의 형태가 안정적이어서 재물운도 꾸준히 들어오는 편입니다. 큰 굴곡 없이 평탄하고 행복한 삶을 꾸려나갈 관상으로, 꾸준한 노력으로 더욱 발전할 수 있습니다. 작은 행운들이 당신을 기다리고 있습니다!',
-                        '하': '당신은 개성 넘치는 매력적인 관상입니다! 날카로운 눈매는 강한 추진력을, 개성 있는 코는 특별한 재능을 의미합니다. 때로는 고집이 세다는 인상을 줄 수 있지만, 이는 목표를 향한 강한 의지를 나타냅니다. 남들과는 다른 특별한 길을 개척하여 성공할 수 있는 관상입니다. 당신만의 독특한 매력으로 주변을 사로잡을 수 있습니다. 스스로를 믿고 나아가세요!'
+                        '금상': '당신은 타고난 복을 지닌 관상입니다! 넓은 이마와 또렷한 눈빛은 지혜와 통찰력을, 두툼한 귓볼은 재물운을 상징합니다. 또한, 입꼬리가 살짝 올라가 있어 인덕이 많고 주변 사람들에게 행운을 가져다주는 길상입니다. 하는 일마다 술술 풀리고 사람들의 존경을 받는 리더의 상입니다. 앞으로 펼쳐질 성공적인 삶을 기대해도 좋습니다!',
+                        '은상': '당신은 안정적이고 균형 잡힌 관상입니다! 단정하고 깔끔한 인상은 신뢰감을 주며, 부드러운 눈매는 온화한 성품을 나타냅니다. 코의 형태가 안정적이어서 재물운도 꾸준히 들어오는 편입니다. 큰 굴곡 없이 평탄하고 행복한 삶을 꾸려나갈 관상으로, 꾸준한 노력으로 더욱 발전할 수 있습니다. 작은 행운들이 당신을 기다리고 있습니다!',
+                        '동상': '당신은 개성 넘치는 매력적인 관상입니다! 날카로운 눈매는 강한 추진력을, 개성 있는 코는 특별한 재능을 의미합니다. 때로는 고집이 세다는 인상을 줄 수 있지만, 이는 목표를 향한 강한 의지를 나타냅니다. 남들과는 다른 특별한 길을 개척하여 성공할 수 있는 관상입니다. 당신만의 독특한 매력으로 주변을 사로잡을 수 있습니다. 스스로를 믿고 나아가세요!'
+                    },
+                    faceClassTranslations: {
+                        '상': '금상',
+                        '중': '은상',
+                        '하': '동상'
                     },
                     shareFaceButton: '결과 공유하기',
                     shareFaceText: '방금 관상 테스트에서 "##RESULT##" 관상으로 나왔어요! ##DESCRIPTION##'
@@ -220,9 +231,14 @@
                     tmImageModel: 'Teachable Machine Image Model',
                     start: 'Upload Image',
                     faceDescriptions: {
-                        '상': 'You possess a face of innate prosperity! A broad forehead and clear eyes symbolize wisdom and insight, while thick earlobes indicate wealth. Your gently upturned mouth corners suggest great personal charm, bringing luck to those around you. This is the mark of a respected leader who finds smooth success in all endeavors. Look forward to a successful life ahead!',
-                        '중': 'Yours is a balanced and stable face! Your neat and tidy appearance inspires trust, and soft eyes reveal a gentle nature. A steady nose shape indicates consistent financial fortune. This face suggests a smooth and happy life without major upheavals; continuous effort will bring further development. Small fortunes are awaiting you!',
-                        '하': 'You have a face of distinctive charm! Sharp eyes signify strong drive, and a unique nose suggests special talents. While sometimes perceived as stubborn, this reflects your strong will towards your goals. This face is destined to forge a unique path to success, captivating others with your individual charisma. Trust yourself and move forward!'
+                        '금상': 'You possess a face of innate prosperity! A broad forehead and clear eyes symbolize wisdom and insight, while thick earlobes indicate wealth. Your gently upturned mouth corners suggest great personal charm, bringing luck to those around you. This is the mark of a respected leader who finds smooth success in all endeavors. Look forward to a successful life ahead!',
+                        '은상': 'Yours is a balanced and stable face! Your neat and tidy appearance inspires trust, and soft eyes reveal a gentle nature. A steady nose shape indicates consistent financial fortune. This face suggests a smooth and happy life without major upheavals; continuous effort will bring further development. Small fortunes are awaiting you!',
+                        '동상': 'You have a face of distinctive charm! Sharp eyes signify strong drive, and a unique nose suggests special talents. While sometimes perceived as stubborn, this reflects your strong will towards your goals. This face is destined to forge a unique path to success, captivating others with your individual charisma. Trust yourself and move forward!'
+                    },
+                    faceClassTranslations: {
+                        '상': '금상',
+                        '중': '은상',
+                        '하': '동상'
                     },
                     shareFaceButton: 'Share Result',
                     shareFaceText: 'My face reading test result is "##RESULT##"! ##DESCRIPTION##'
@@ -241,3 +257,4 @@
         });
     </script>
 </body>
+</html>
