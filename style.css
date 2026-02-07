@@ -4,7 +4,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 100vh; /* Ensure body takes full viewport height */
     margin: 0;
     background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     text-align: center;
@@ -14,35 +14,42 @@ body.body-no-scroll {
     overflow: hidden;
 }
 
+/* Header is now essentially just a container for absolutely positioned elements */
 header {
-    display: flex;
-    flex-direction: row;
-    align-items: center; /* Vertically center items */
-    justify-content: space-between; /* Space out language selector and nav buttons */
-    width: 100%;
-    padding: 10px 20px; /* Add some padding */
-    box-sizing: border-box; /* Include padding in width */
-    position: relative; /* For potential absolute children if needed later */
+    width: 100%; /* Take full width */
+    position: absolute; /* Allow absolute positioning of children relative to viewport */
+    top: 0;
+    left: 0;
+    height: 0; /* No height, purely for containing */
+    z-index: 999; /* Ensure header elements are above main content */
 }
 
-header h1 {
+/* Top-left navigation buttons */
+#top-left-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000; /* Ensure clickable */
+}
+
+/* Top-right language selector */
+#top-right-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000; /* Ensure clickable */
+}
+
+h1#header-title { /* Targeting h1 moved to main content area */
     font-size: 3em;
     color: #333;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    margin: 0 auto; /* Center h1 horizontally within flex container */
+    margin-bottom: 1rem;
     white-space: nowrap; /* Prevent h1 from wrapping */
-}
-
-#language-selector {
-    position: static; /* Remove absolute positioning */
-    display: flex;
-    gap: 10px;
-    /* Adjust margin to be part of the flex distribution */
-}
-
-#top-left-buttons {
-    display: flex;
-    gap: 10px; /* Space between the buttons */
 }
 
 
