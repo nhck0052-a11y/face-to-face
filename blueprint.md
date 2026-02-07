@@ -11,11 +11,18 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 - **Basic Styling**: Responsive design with a clean, modern aesthetic.
 - **Firebase Configuration**: The project is pre-configured with Firebase for potential deployment.
 
+## New Feature: Partnership Inquiry Contact Form
+- **Formspree Integration**: A contact form for partnership inquiries, submitting data to Formspree.
+- **Form Fields**: Includes fields for Name, Email, and Message.
+- **Navigation**: A navigation link in the header allows users to easily access the contact form section.
+
 ## Technologies Used
 - HTML5
 - CSS3
 - JavaScript (ES6+)
 - `canvas-confetti` library (via CDN)
+- Formspree for form submission handling
+
 
 ## Current Language
 The application is currently entirely in Korean.
