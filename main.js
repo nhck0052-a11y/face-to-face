@@ -39,7 +39,12 @@ const translations = {
         faceTestTitle: '관상 테스트',
         backToHome: '홈으로 돌아가기',
         tmImageModel: 'Teachable Machine Image Model',
-        start: '시작'
+        start: '시작',
+        faceDescriptions: {
+            '상': '당신은 상위 1%의 관상입니다! 빛나는 앞날이 기대됩니다!',
+            '중': '당신은 평범하지만 매력적인 관상입니다! 노력하면 빛을 볼 거예요!',
+            '하': '당신은 독특한 매력의 관상입니다! 자신감을 가지세요!'
+        }
     },
     en: {
         title: 'Lucky Draw',
@@ -71,7 +76,12 @@ const translations = {
         faceTestTitle: 'Face Test',
         backToHome: 'Back to Home',
         tmImageModel: 'Teachable Machine Image Model',
-        start: 'Start'
+        start: 'Start',
+        faceDescriptions: {
+            '상': 'You have a top 1% face reading! A bright future awaits!',
+            '중': 'You have an average but charming face reading! Efforts will pay off!',
+            '하': 'You have a uniquely charming face reading! Be confident!'
+        }
     }
 };
 

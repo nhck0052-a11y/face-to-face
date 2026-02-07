@@ -78,6 +78,7 @@
         <canvas id="image-canvas" style="display: none; max-width: 200px; max-height: 200px;"></canvas>
     </div>
     <div id="label-container"></div>
+    <div id="face-description" style="margin-top: 20px; font-size: 1.1em; color: #555;"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
     <script type="text/javascript">
@@ -85,13 +86,16 @@
         // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
         // the link to your model provided by Teachable Machine export panel
+        // the link to your model provided by Teachable Machine export panel
         const URL = "https://teachablemachine.withgoogle.com/models/BqpR6ZHhi/";
 
         let model, labelContainer, maxPredictions;
         const imageCanvas = document.getElementById('image-canvas');
         const fileInput = document.getElementById('file-input');
         const startButton = document.getElementById('face-test-start-button');
+        const faceDescriptionDiv = document.getElementById('face-description');
         let ctx = imageCanvas.getContext('2d');
+        let translations; // Declare translations in a higher scope
 
         // Load the image model
         async function loadModel() {
@@ -108,11 +112,24 @@
                 return;
             }
             const prediction = await model.predict(imageCanvas);
+            let highestProbability = 0;
+            let predictedClassName = '';
+
+            labelContainer.innerHTML = ''; // Clear previous predictions
             for (let i = 0; i < maxPredictions; i++) {
-                const classPrediction =
-                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-                labelContainer.childNodes[i].innerHTML = classPrediction;
+                const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.appendChild(document.createElement("div")).innerHTML = classPrediction;
+
+                if (prediction[i].probability > highestProbability) {
+                    highestProbability = prediction[i].probability;
+                    predictedClassName = prediction[i].className;
+                }
             }
+
+            // Get current language and descriptions from the translations object
+            const currentLang = localStorage.getItem('lang') || 'ko';
+            const description = translations[currentLang].faceDescriptions[predictedClassName];
+            faceDescriptionDiv.textContent = description || ''; // Display the description or empty string
         }
 
         startButton.addEventListener('click', () => {
@@ -134,9 +151,7 @@
                     ctx.drawImage(img, 0, 0, 200, 200);
                     imageCanvas.style.display = 'block'; // Show the canvas
                     labelContainer.innerHTML = ''; // Clear previous predictions
-                    for (let i = 0; i < maxPredictions; i++) {
-                        labelContainer.appendChild(document.createElement("div"));
-                    }
+                    faceDescriptionDiv.textContent = ''; // Clear previous description
                     await predict();
                 };
                 img.src = e.target.result;
@@ -148,23 +163,35 @@
         document.addEventListener('DOMContentLoaded', async () => {
             await loadModel();
             labelContainer = document.getElementById("label-container");
-            // Initial language setup
-            const currentLang = localStorage.getItem('lang') || 'ko';
-            const translations = {
+            // Define translations locally for initialization
+            const localTranslations = {
                 ko: {
                     faceTestTitle: '관상 테스트',
                     backToHome: '홈으로 돌아가기',
                     tmImageModel: 'Teachable Machine Image Model',
-                    start: '이미지 업로드' // Changed to reflect file upload
+                    start: '이미지 업로드',
+                    faceDescriptions: {
+                        '상': '당신은 상위 1%의 관상입니다! 빛나는 앞날이 기대됩니다!',
+                        '중': '당신은 평범하지만 매력적인 관상입니다! 노력하면 빛을 볼 거예요!',
+                        '하': '당신은 독특한 매력의 관상입니다! 자신감을 가지세요!'
+                    }
                 },
                 en: {
                     faceTestTitle: 'Face Test',
                     backToHome: 'Back to Home',
                     tmImageModel: 'Teachable Machine Image Model',
-                    start: 'Upload Image' // Changed to reflect file upload
+                    start: 'Upload Image',
+                    faceDescriptions: {
+                        '상': 'You have a top 1% face reading! A bright future awaits!',
+                        '중': 'You have an average but charming face reading! Efforts will pay off!',
+                        '하': 'You have a uniquely charming face reading! Be confident!'
+                    }
                 }
             };
+            translations = localTranslations; // Assign to higher scope variable
 
+            // Initial language setup
+            const currentLang = localStorage.getItem('lang') || 'ko';
             document.title = translations[currentLang].faceTestTitle;
             document.getElementById('face-test-header').textContent = translations[currentLang].faceTestTitle;
             document.getElementById('back-to-home').textContent = translations[currentLang].backToHome;
