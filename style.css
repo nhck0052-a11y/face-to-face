@@ -32,6 +32,7 @@ header {
     display: flex;
     gap: 10px;
     z-index: 1000; /* Ensure clickable */
+    pointer-events: auto; /* Explicitly enable pointer events */
 }
 
 /* Top-right language selector */
@@ -42,6 +43,13 @@ header {
     display: flex;
     gap: 10px;
     z-index: 1000; /* Ensure clickable */
+    pointer-events: auto; /* Explicitly enable pointer events */
+}
+
+/* Ensure main content does not interfere with z-index of navs */
+main {
+    position: relative; /* Establish stacking context */
+    z-index: 1; /* Lower than navs */
 }
 
 h1#header-title { /* Targeting h1 moved to main content area */
