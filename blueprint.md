@@ -48,6 +48,10 @@ This project is a simple web-based "lucky draw" application. Users click a butto
 - **Loading Message for User Experience**: A "잠시만 기다려주세요..." loading message is displayed while the Teachable Machine model is loading, and it disappears once the model is ready or an image is selected, improving user experience.
 - **Z-Index Management**: Carefully managed z-index of overlapping elements, especially for navigation buttons and the confetti canvas, to ensure all interactive elements are clickable.
 
+## Google AdSense Integration
+- **AdSense Script**: The Google AdSense script and meta tag have been added to the `<head>` section of both `index.html` and `animal_face_test.html` for ad serving and account verification.
+- **ads.txt**: An `ads.txt` file has been created in the root directory to authorize ad sellers.
+
 ## Current Language
 The application is currently entirely in Korean.
 
