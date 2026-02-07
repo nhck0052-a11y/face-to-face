@@ -276,3 +276,34 @@ h1#header-title { /* Targeting h1 moved to main content area */
 #contact-form button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    #top-left-nav {
+        top: 10px;
+        left: 10px;
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 5px;
+    }
+
+    #top-right-nav {
+        top: 10px;
+        right: 10px;
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 5px;
+    }
+
+    h1#header-title {
+        font-size: 2em; /* Smaller font size for mobile */
+        margin-top: 80px; /* Push down h1 to avoid overlap with buttons */
+    }
+
+    .lang-button {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+
+    #label-container div {
+        font-size: 1.8em; /* Adjust result text size for mobile */
+    }
+}
