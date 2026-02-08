@@ -410,42 +410,60 @@ h1#header-title {
     font-size: 1em;
 }
 
+/* --- Lucky Draw Results Section --- */
+.lucky-draw-results {
+    padding: 40px 20px;
+    margin-bottom: 3rem;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.lucky-draw-result {
+    font-size: 2em;
+    font-weight: bold;
+    color: #ff7e5f;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    min-height: 80px; /* Ensure space even when empty */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 2px dashed #a7d9f7;
+}
+
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .hero-section {
         flex-direction: column;
         text-align: center;
     }
-
     .hero-content {
         text-align: center;
     }
-
     .hero-content h1 {
         font-size: 2.5em;
     }
-
     .tagline {
         font-size: 1.2em;
     }
-
     .hero-buttons {
         justify-content: center;
     }
-
     .feature-grid {
         grid-template-columns: 1fr;
     }
-
     .value-points {
         grid-template-columns: 1fr;
     }
-
     .testimonial-carousel {
         flex-wrap: wrap; /* Allow cards to wrap if not enough space */
         justify-content: center;
     }
-
     .testimonial-card {
         flex: 0 0 90%; /* Take almost full width on small screens */
     }
