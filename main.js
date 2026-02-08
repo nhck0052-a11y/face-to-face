@@ -169,6 +169,12 @@ const handleDrawButtonClick = () => {
                 origin: { y: 0.6 }
             });
             shareButton.style.display = 'block';
+
+            // Scroll to the lucky draw results section
+            const luckyDrawResultsSection = document.getElementById('lucky-draw-results');
+            if (luckyDrawResultsSection) {
+                luckyDrawResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     }, 100);
 };

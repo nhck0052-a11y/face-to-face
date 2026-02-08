@@ -1,11 +1,11 @@
-# Project Blueprint: Face-to-Face AdSense Compliance Enhancement
+# Project Blueprint: Face-to-Face AdSense Compliance Enhancement & UI/UX Improvements
 
 ## Project Overview
-The "Face-to-Face" website is an interactive web application designed to offer fun features like an "Animal Face Test" using AI and a "Lucky Draw." The primary goal of this initiative is to enhance the website's content, structure, and design to ensure full compliance with Google AdSense program policies, specifically addressing issues related to "contentless or low-value content" for successful AdSense approval. The site aims to be visually appealing, user-friendly, and accessible, leveraging modern web standards.
+The "Face-to-Face" website is an interactive web application designed to offer fun features like an "AI Animal Face Test" and a "Lucky Draw." The primary goal of this initiative is to enhance the website's content, structure, and design to ensure full compliance with Google AdSense program policies, specifically addressing issues related to "contentless or low-value content." This iteration also focuses on improving the user experience by reordering content sections and implementing intuitive scrolling behavior.
 
 ## Detailed Outline of Implemented Features & Design (Initial State + Current Changes)
 
-### Initial State (Pre-AdSense Compliance Enhancement)
+### Initial State (Pre-AdSense Compliance Enhancement & UI/UX Improvements)
 *   **Core Functionality:** "Lucky Draw" on `index.html`, and a planned "Animal Face Test" linked via `animal_face_test.html`.
 *   **Navigation:** Basic header navigation (`index.html`, `animal_face_test.html`, `about.html`, contact button) with language toggles (Korean/English).
 *   **Footer:** Links to "About Us" and "Privacy Policy."
@@ -15,62 +15,52 @@ The "Face-to-Face" website is an interactive web application designed to offer f
 *   **Styling:** Basic `style.css` with responsive elements and a clean design for header, footer, and main sections.
 *   **Accessibility:** Basic HTML structure, but no explicit a11y features implemented yet.
 
-### AdSense Compliance Enhancement (Current Task)
+### AdSense Compliance Enhancement (Previous Task)
 
 #### Objective
 Transform the website into a rich, high-quality content platform that unequivocally meets Google AdSense's program policies, focusing on eliminating "contentless or low-value content" and improving overall user experience.
 
-#### Style and Design Principles
+#### Style and Design Principles (Applied)
 *   **Aesthetics:** Modern, clean, and engaging design with good use of typography, spacing, and a vibrant color palette.
 *   **Responsiveness:** Fully mobile-responsive across all devices.
-*   **Visual Appeal:** Integrate relevant placeholder images and possibly icons to enhance visual storytelling.
-*   **Accessibility (A11y):** Implement ARIA attributes and ensure semantic HTML for better screen reader compatibility.
+*   **Visual Appeal:** Integrated relevant placeholder SVG images and Font Awesome icons.
+*   **Accessibility (A11y):** Semantic HTML structure improved.
 
-#### Features & Content Enhancements
+#### Features & Content Enhancements (Applied)
 
 1.  **Homepage (`index.html`) Enrichment:**
-    *   **Hero Section:** Add a compelling title, a detailed and inviting description of the site's value proposition, and a clear call-to-action.
-    *   **Features Overview:** Create dedicated, detailed sections for "Animal Face Test" and "Lucky Draw," explaining their mechanics, benefits, and unique aspects with rich text and supporting visuals.
-    *   **Value Proposition:** Include sections highlighting the unique aspects of "Face-to-Face" (e.g., AI accuracy, entertainment, community sharing).
-    *   **Testimonials (Placeholder):** Add a section with fictional user testimonials to build trust and credibility.
-    *   **Improved Footer:** Ensure consistent and comprehensive links.
-
+    *   **Hero Section:** Added a compelling title, a detailed and inviting description of the site's value proposition, and clear calls-to-action.
+    *   **Features Overview:** Created dedicated, detailed sections for "AI 동물상 테스트" and "매일매일 행운 뽑기" with rich text and supporting visuals.
+    *   **Value Proposition:** Included sections highlighting the unique aspects of "Face-to-Face".
+    *   **Testimonials:** Added a section with fictional user testimonials.
+    *   **Lucky Draw Results:** Reintroduced `id="result"` and `id="share-button"` for lucky draw outcomes and sharing.
 2.  **About Us Page (`about.html`) Expansion:**
-    *   **Detailed Narrative:** Expand the "About Us" section to include the platform's origin story, mission, vision, and the passion behind its creation.
-    *   **Team/Technology:** Briefly discuss the (fictional) team or the advanced AI/web technologies used.
-    *   **Future Outlook:** Share aspirations and future developments.
-    *   **Styling:** Move inline styles to `style.css`.
-
+    *   **Detailed Narrative:** Expanded to include the platform's origin story, mission, vision, and technology.
+    *   **Styling:** Moved inline styles to `style.css`, added `class="sub-page"`.
 3.  **Privacy Policy Page (`privacy.html`) Enhancement:**
-    *   **Comprehensive Coverage:** Elaborate on data collection practices, usage, data sharing (with specific mention of Google AdSense and analytics), data retention policies, and user rights.
-    *   **Clarity and Readability:** Improve formatting with clear headings, subheadings, and bullet points for ease of understanding.
-    *   **Contact for Privacy Concerns:** Provide clear contact information for privacy-related inquiries.
-    *   **Styling:** Move inline styles to `style.css`.
-
+    *   **Comprehensive Coverage:** Elaborated on data collection, usage, sharing (Google AdSense, analytics), retention, and user rights.
+    *   **Clarity and Readability:** Improved formatting with clear headings and bullet points.
+    *   **Styling:** Moved inline styles to `style.css`, added `class="sub-page"`.
 4.  **Global Styling (`style.css`) Refinements:**
-    *   **Consistent Theming:** Apply a consistent color palette, typography, and spacing throughout the site.
-    *   **Modern CSS:** Utilize modern CSS features for layout (e.g., Flexbox, Grid for main content), and subtle animations/transitions for interactivity.
-    *   **Accessibility:** Ensure sufficient color contrast and focus states for interactive elements.
-    *   **Inline Style Removal:** Integrate all styles previously defined inline in `about.html` and `privacy.html` into `style.css`.
+    *   **Consistent Theming:** Applied a consistent color palette, typography, and spacing.
+    *   **New Section Styles:** Added styles for hero, features, value proposition, testimonials, and lucky draw results sections.
+5.  **`main.js` Adjustments:**
+    *   Removed redundant JavaScript content population.
+    *   Adjusted lucky draw event listeners to new buttons (`#draw-button`, `#draw-button-hero`).
+    *   Added event listener for `contact-link-about` in `about.html`.
 
-## Plan for Current Request: AdSense Compliance
+### UI/UX Improvements (Current Task)
 
-1.  **Update `style.css`:**
-    *   Remove inline styles from `about.html` and `privacy.html` and integrate them into `style.css`.
-    *   Add new styles to support the expanded content and visual design for all three HTML files.
-    *   Ensure all new styles are responsive and aesthetically pleasing.
-2.  **Modify `about.html`:**
-    *   Expand the content significantly with detailed sections on the platform's mission, vision, the benefits of using it, and future plans.
-    *   Remove inline styles.
-3.  **Modify `privacy.html`:**
-    *   Enhance the privacy policy with more detailed explanations of data handling, user rights, and third-party services like AdSense.
-    *   Improve readability and structure.
-    *   Remove inline styles.
-4.  **Modify `index.html`:**
-    *   Add rich, compelling content to the main sections (Hero, Features, Value Proposition, Testimonials).
-    *   Integrate placeholder images.
-    *   Ensure all content is well-structured using semantic HTML.
-5.  **Verify:** After all modifications, review the site for content quality, visual consistency, responsiveness, and AdSense policy compliance.
-6.  **Create Placeholder Images:** If images are needed, I'll provide instructions for the user or create simple placeholders.
+#### Objective
+Improve user flow and visual hierarchy on the homepage by reordering content and guiding users to relevant sections after interaction.
 
-This blueprint will be updated iteratively as changes are implemented.
+#### Plan and Steps for Current Requested Changes
+
+1.  **Swap "오늘의 행운 결과" and "사용자 후기" Sections in `index.html`:**
+    *   **Action:** Modify `index.html` to place the `<section id="lucky-draw-results">` block before the `<section class="testimonials">` block.
+    *   **Reasoning:** Placing the lucky draw results section immediately after the main features or value proposition makes more sense visually, especially if users are interacting with the lucky draw.
+2.  **Implement Smooth Scroll to "오늘의 행운 결과" in `main.js`:**
+    *   **Action:** In `main.js`, modify the `handleDrawButtonClick` function. After the lucky draw result is displayed and confetti animation completes, add JavaScript to smoothly scroll the user's view to the `<section id="lucky-draw-results">`.
+    *   **Reasoning:** This improves user experience by directly guiding them to the outcome of their interaction, making the process more intuitive and engaging.
+
+This blueprint will continue to be updated iteratively as changes are implemented.
