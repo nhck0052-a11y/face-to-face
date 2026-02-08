@@ -49,18 +49,29 @@ Transform the website into a rich, high-quality content platform that unequivoca
     *   Adjusted lucky draw event listeners to new buttons (`#draw-button`, `#draw-button-hero`).
     *   Added event listener for `contact-link-about` in `about.html`.
 
-### UI/UX Improvements (Current Task)
+### UI/UX Improvements (Previous Task)
 
 #### Objective
 Improve user flow and visual hierarchy on the homepage by reordering content and guiding users to relevant sections after interaction.
 
-#### Plan and Steps for Current Requested Changes
+#### Plan and Steps for Current Requested Changes (Applied)
 
 1.  **Swap "오늘의 행운 결과" and "사용자 후기" Sections in `index.html`:**
-    *   **Action:** Modify `index.html` to place the `<section id="lucky-draw-results">` block before the `<section class="testimonials">` block.
+    *   **Action:** Modified `index.html` to place the `<section id="lucky-draw-results">` block before the `<section class="testimonials">` block.
     *   **Reasoning:** Placing the lucky draw results section immediately after the main features or value proposition makes more sense visually, especially if users are interacting with the lucky draw.
 2.  **Implement Smooth Scroll to "오늘의 행운 결과" in `main.js`:**
-    *   **Action:** In `main.js`, modify the `handleDrawButtonClick` function. After the lucky draw result is displayed and confetti animation completes, add JavaScript to smoothly scroll the user's view to the `<section id="lucky-draw-results">`.
+    *   **Action:** In `main.js`, modified the `handleDrawButtonClick` function. After the lucky draw result is displayed and confetti animation completes, added JavaScript to smoothly scroll the user's view to the `<section id="lucky-draw-results">`.
     *   **Reasoning:** This improves user experience by directly guiding them to the outcome of their interaction, making the process more intuitive and engaging.
+
+### Language Switching Fix (Current Task)
+
+#### Objective
+Ensure that all dynamic UI elements, particularly navigation links, are correctly translated when the language is switched.
+
+#### Plan and Steps for Current Requested Changes
+
+1.  **Re-enable Translation for Navigation Links in `main.js`:**
+    *   **Action:** In the `setLanguage` function within `main.js`, re-introduced `textContent` updates for `animal-face-test-nav-button`, `about-nav-button`, and `contactNavButton`.
+    *   **Reasoning:** These elements are part of the interactive UI and should be translated, unlike the static rich content added for AdSense compliance.
 
 This blueprint will continue to be updated iteratively as changes are implemented.

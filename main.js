@@ -82,11 +82,12 @@ const setLanguage = (lang) => {
     document.title = t.title; // Keep this as title is still dynamic
 
     // Update only dynamic elements that are not part of rich content
+    // Navigation links
     document.getElementById('contact-nav-button').textContent = t.contactNavButton;
-    document.getElementById('footer-about').textContent = t.footerAbout;
-    document.getElementById('footer-privacy').textContent = t.footerPrivacy;
+    document.getElementById('animal-face-test-nav-button').textContent = t.animalFaceTestNavButton;
+    document.getElementById('about-nav-button').textContent = t.aboutNavButton;
 
-    // Update draw button text
+    // Footer links
     if (drawButton) { // Ensure button exists on the page
         drawButton.textContent = t.drawButton;
     }
