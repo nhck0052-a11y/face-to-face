@@ -1,5 +1,6 @@
 // DOM Elements
-const drawButton = document.getElementById('draw-button');
+const drawButton = document.getElementById('draw-button'); // This is the feature card draw button
+const drawButtonHero = document.getElementById('draw-button-hero'); // This is the hero section draw button
 const resultDiv = document.getElementById('result');
 const shareButton = document.getElementById('share-button');
 const langKoButton = document.getElementById('lang-ko');
@@ -78,18 +79,20 @@ const setLanguage = (lang) => {
     const t = translations[lang];
 
     // Update all text content based on the selected language
-    document.title = t.title;
-    document.getElementById('header-title').textContent = t.header;
-    document.getElementById('site-description').textContent = t.siteDescription;
-    document.getElementById('lucky-draw-title').textContent = t.luckyDrawTitle;
-    document.getElementById('lucky-draw-description').textContent = t.luckyDrawDescription;
-    document.getElementById('draw-button').textContent = t.drawButton;
-    document.getElementById('share-button').textContent = t.shareButton;
+    document.title = t.title; // Keep this as title is still dynamic
+
+    // Update only dynamic elements that are not part of rich content
     document.getElementById('contact-nav-button').textContent = t.contactNavButton;
-    document.getElementById('animal-face-test-nav-button').textContent = t.animalFaceTestNavButton;
-    document.getElementById('about-nav-button').textContent = t.aboutNavButton;
     document.getElementById('footer-about').textContent = t.footerAbout;
     document.getElementById('footer-privacy').textContent = t.footerPrivacy;
+
+    // Update draw button text
+    if (drawButton) { // Ensure button exists on the page
+        drawButton.textContent = t.drawButton;
+    }
+    if (drawButtonHero) { // Ensure button exists on the page
+        drawButtonHero.textContent = t.drawButton;
+    }
 
     if (document.getElementById('contact-title')) {
         document.getElementById('contact-title').textContent = t.contactTitle;
@@ -140,7 +143,7 @@ const myConfetti = confetti.create(confettiCanvas, {
     useWorker: true
 });
 
-drawButton.addEventListener('click', () => {
+const handleDrawButtonClick = () => {
     resultDiv.textContent = '';
     resultDiv.dataset.prize = '';
     shareButton.style.display = 'none';
@@ -168,7 +171,24 @@ drawButton.addEventListener('click', () => {
             shareButton.style.display = 'block';
         }
     }, 100);
-});
+};
+
+if (drawButton) {
+    drawButton.addEventListener('click', handleDrawButtonClick);
+}
+if (drawButtonHero) {
+    drawButtonHero.addEventListener('click', handleDrawButtonClick);
+}
+
+// Handle contact link in about.html
+const contactLinkAbout = document.getElementById('contact-link-about');
+if (contactLinkAbout) {
+    contactLinkAbout.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default anchor link behavior
+        contactSection.classList.add('active');
+        document.body.classList.add('body-no-scroll');
+    });
+}
 
 shareButton.addEventListener('click', () => {
     const prize = resultDiv.textContent;

@@ -1,0 +1,9 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" rx="20" fill="#E0F7FA"/>
+    <circle cx="100" cy="80" r="30" fill="#00BCD4"/>
+    <path d="M70 140 C70 120 130 120 130 140 L115 155 L85 155 L70 140 Z" fill="#00BCD4"/>
+    <circle cx="85" cy="80" r="5" fill="white"/>
+    <circle cx="115" cy="80" r="5" fill="white"/>
+    <path d="M80 100 C80 110 120 110 120 100" stroke="white" stroke-width="2"/>
+    <text x="100" y="180" font-family="Arial" font-size="20" fill="#00838F" text-anchor="middle">AI Face</text>
+</svg>

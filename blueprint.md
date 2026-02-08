@@ -1,54 +1,76 @@
-# Project Blueprint: Face-to-Face
+# Project Blueprint: Face-to-Face AdSense Compliance Enhancement
 
-## Overview
-This project is a user-friendly, interactive web application designed to provide entertainment and fun through two main features: a "Lucky Draw" game and an AI-powered "Animal Face Test." The site has been significantly enhanced to meet Google AdSense quality guidelines, featuring a professional and consistent design, clear navigation, substantial content, and important trust-building pages like "About Us" and a "Privacy Policy." The application is fully bilingual (Korean/English) and responsive.
+## Project Overview
+The "Face-to-Face" website is an interactive web application designed to offer fun features like an "Animal Face Test" using AI and a "Lucky Draw." The primary goal of this initiative is to enhance the website's content, structure, and design to ensure full compliance with Google AdSense program policies, specifically addressing issues related to "contentless or low-value content" for successful AdSense approval. The site aims to be visually appealing, user-friendly, and accessible, leveraging modern web standards.
 
-## High-Quality Site Enhancements for AdSense
-To align with AdSense program policies and best practices for creating a high-quality site, the following major improvements have been implemented:
+## Detailed Outline of Implemented Features & Design (Initial State + Current Changes)
 
-- **Creation of Essential Pages:**
-    - **`about.html`:** An "About Us" page has been created to clearly explain the website's purpose, its features, and its mission to provide enjoyable content.
-    - **`privacy.html`:** A comprehensive "Privacy Policy" page has been added, detailing data handling practices (including for the contact form and Google AdSense), which is a critical factor for user trust and AdSense approval.
+### Initial State (Pre-AdSense Compliance Enhancement)
+*   **Core Functionality:** "Lucky Draw" on `index.html`, and a planned "Animal Face Test" linked via `animal_face_test.html`.
+*   **Navigation:** Basic header navigation (`index.html`, `animal_face_test.html`, `about.html`, contact button) with language toggles (Korean/English).
+*   **Footer:** Links to "About Us" and "Privacy Policy."
+*   **Contact Form:** A modal contact form integrated into `index.html` (via `main.js`) using Formspree.
+*   **AdSense Integration:** `adsbygoogle.js` script present in `index.html`.
+*   **Content Language:** Primarily Korean.
+*   **Styling:** Basic `style.css` with responsive elements and a clean design for header, footer, and main sections.
+*   **Accessibility:** Basic HTML structure, but no explicit a11y features implemented yet.
 
-- **Improved Site Structure & Navigation:**
-    - **Consistent Header:** A sticky navigation header has been implemented across all pages (`index.html`, `animal_face_test.html`, `about.html`, `privacy.html`), featuring the site title, and links to major sections ("Animal Face Test," "About Us"), language selectors, and a contact button.
-    - **Consistent Footer:** A site-wide footer has been added, containing links to the "About Us" and "Privacy Policy" pages, and a copyright notice.
-    - This unified structure provides a predictable and user-friendly navigation experience.
+### AdSense Compliance Enhancement (Current Task)
 
-- **Enhanced Content Quantity and Quality:**
-    - **Home Page (`index.html`):** The main page now includes a detailed introduction to the website and its features, providing users with clear, valuable information upfront. The "Lucky Draw" section also has more descriptive text.
-    - **Animal Face Test Page (`animal_face_test.html`):** This page now includes a proper title and a description of the feature, enriching the user's understanding and increasing the page's content.
+#### Objective
+Transform the website into a rich, high-quality content platform that unequivocally meets Google AdSense's program policies, focusing on eliminating "contentless or low-value content" and improving overall user experience.
 
-## Core Features
+#### Style and Design Principles
+*   **Aesthetics:** Modern, clean, and engaging design with good use of typography, spacing, and a vibrant color palette.
+*   **Responsiveness:** Fully mobile-responsive across all devices.
+*   **Visual Appeal:** Integrate relevant placeholder images and possibly icons to enhance visual storytelling.
+*   **Accessibility (A11y):** Implement ARIA attributes and ensure semantic HTML for better screen reader compatibility.
 
-- **Lucky Draw Game (`index.html`):**
-    - Users can click a "Draw" button to receive a random prize from a predefined list.
-    - A celebratory confetti animation is displayed upon winning.
-    - A "Share" button allows users to share their results.
+#### Features & Content Enhancements
 
-- **Animal Face Test (`animal_face_test.html`):**
-    - **AI Model Integration:** Integrates a Teachable Machine Image Model to classify user-uploaded photos into different "animal faces" (e.g., Dog, Cat, Pig).
-    - **Robust File Upload:** The image upload functionality is implemented via a standard `<button>` that programmatically triggers a hidden `<input type="file">`. This ensures maximum compatibility across desktop and mobile browsers.
-    - **Error Handling:** The `loadModel` function is enhanced to prevent users from attempting to upload an image before the AI model is fully loaded. The upload button is `disabled` during loading and hidden if loading fails.
-    - **Rich Results:** The test displays the resulting animal face type along with a detailed, engaging description of its characteristics.
+1.  **Homepage (`index.html`) Enrichment:**
+    *   **Hero Section:** Add a compelling title, a detailed and inviting description of the site's value proposition, and a clear call-to-action.
+    *   **Features Overview:** Create dedicated, detailed sections for "Animal Face Test" and "Lucky Draw," explaining their mechanics, benefits, and unique aspects with rich text and supporting visuals.
+    *   **Value Proposition:** Include sections highlighting the unique aspects of "Face-to-Face" (e.g., AI accuracy, entertainment, community sharing).
+    *   **Testimonials (Placeholder):** Add a section with fictional user testimonials to build trust and credibility.
+    *   **Improved Footer:** Ensure consistent and comprehensive links.
 
-- **Bilingual Support (Korean/English):**
-    - All text content across the entire site, including navigation, footers, and dynamically generated content, is translatable.
-    - The user's language preference is saved in `localStorage` to persist across sessions.
+2.  **About Us Page (`about.html`) Expansion:**
+    *   **Detailed Narrative:** Expand the "About Us" section to include the platform's origin story, mission, vision, and the passion behind its creation.
+    *   **Team/Technology:** Briefly discuss the (fictional) team or the advanced AI/web technologies used.
+    *   **Future Outlook:** Share aspirations and future developments.
+    *   **Styling:** Move inline styles to `style.css`.
 
-- **Contact Form:**
-    - A modal-based contact form for partnership inquiries, submitting data to Formspree.
+3.  **Privacy Policy Page (`privacy.html`) Enhancement:**
+    *   **Comprehensive Coverage:** Elaborate on data collection practices, usage, data sharing (with specific mention of Google AdSense and analytics), data retention policies, and user rights.
+    *   **Clarity and Readability:** Improve formatting with clear headings, subheadings, and bullet points for ease of understanding.
+    *   **Contact for Privacy Concerns:** Provide clear contact information for privacy-related inquiries.
+    *   **Styling:** Move inline styles to `style.css`.
 
-## Google AdSense Integration
-- **AdSense Script**: The Google AdSense script and meta tag have been added to the `<head>` section of both `index.html` and `animal_face_test.html` for ad serving and account verification.
-- **`ads.txt`**: An `ads.txt` file has been created in the root directory to authorize ad sellers.
+4.  **Global Styling (`style.css`) Refinements:**
+    *   **Consistent Theming:** Apply a consistent color palette, typography, and spacing throughout the site.
+    *   **Modern CSS:** Utilize modern CSS features for layout (e.g., Flexbox, Grid for main content), and subtle animations/transitions for interactivity.
+    *   **Accessibility:** Ensure sufficient color contrast and focus states for interactive elements.
+    *   **Inline Style Removal:** Integrate all styles previously defined inline in `about.html` and `privacy.html` into `style.css`.
 
-## Technologies Used
-- HTML5, CSS3, JavaScript (ES6+)
-- `canvas-confetti` library (via CDN)
-- Formspree for form submission
-- TensorFlow.js and Teachable Machine Image library for the AI model
+## Plan for Current Request: AdSense Compliance
 
-## Code-level Improvements
-- **JavaScript Refactoring:** All page-specific JavaScript, including DOM element selections and event listeners, is now wrapped in a `DOMContentLoaded` event handler. This ensures that the script only executes after the DOM is fully parsed and ready, preventing race conditions and improving reliability.
-- **CSS Restructuring:** The stylesheet has been overhauled to support the new site structure, removing obsolete rules and adding new styles for the header, footer, and navigation to create a clean, modern, and responsive design.
+1.  **Update `style.css`:**
+    *   Remove inline styles from `about.html` and `privacy.html` and integrate them into `style.css`.
+    *   Add new styles to support the expanded content and visual design for all three HTML files.
+    *   Ensure all new styles are responsive and aesthetically pleasing.
+2.  **Modify `about.html`:**
+    *   Expand the content significantly with detailed sections on the platform's mission, vision, the benefits of using it, and future plans.
+    *   Remove inline styles.
+3.  **Modify `privacy.html`:**
+    *   Enhance the privacy policy with more detailed explanations of data handling, user rights, and third-party services like AdSense.
+    *   Improve readability and structure.
+    *   Remove inline styles.
+4.  **Modify `index.html`:**
+    *   Add rich, compelling content to the main sections (Hero, Features, Value Proposition, Testimonials).
+    *   Integrate placeholder images.
+    *   Ensure all content is well-structured using semantic HTML.
+5.  **Verify:** After all modifications, review the site for content quality, visual consistency, responsiveness, and AdSense policy compliance.
+6.  **Create Placeholder Images:** If images are needed, I'll provide instructions for the user or create simple placeholders.
+
+This blueprint will be updated iteratively as changes are implemented.

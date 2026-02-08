@@ -6,8 +6,10 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7447900045188794"
      crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Face-to-Face: 당신의 숨겨진 매력을 발견하다!</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="site-header">
@@ -16,26 +18,101 @@
             <nav class="nav">
                 <button id="lang-ko" class="lang-button">한국어</button>
                 <button id="lang-en" class="lang-button">English</button>
-                <a class="nav__link" href="animal_face_test.html" id="animal-face-test-nav-button"></a>
-                <a class="nav__link" href="about.html" id="about-nav-button"></a>
-                <button id="contact-nav-button" class="lang-button"></button>
+                <a class="nav__link" href="animal_face_test.html" id="animal-face-test-nav-button">AI 동물상 테스트</a>
+                <a class="nav__link" href="about.html" id="about-nav-button">회사 소개</a>
+                <button id="contact-nav-button" class="lang-button">문의하기</button>
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="intro-section">
-            <h1 id="header-title"></h1>
-            <p id="site-description" class="site-description"></p>
-        </div>
-        <section class="draw-section">
-            <h2 id="lucky-draw-title"></h2>
-            <p id="lucky-draw-description"></p>
-            <button id="draw-button"></button>
-            <div id="result"></div>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Face-to-Face: 당신의 숨겨진 매력을 발견하다!</h1>
+                <p class="tagline">
+                    최첨단 AI 기술과 유쾌한 행운 뽑기가 만났습니다. 
+                    지금 바로 당신의 얼굴과 운세를 탐험하고 친구들과 공유해보세요!
+                </p>
+                <div class="hero-buttons">
+                    <a href="animal_face_test.html" class="button primary-button">AI 동물상 테스트 시작하기</a>
+                    <button id="draw-button-hero" class="button secondary-button">오늘의 행운 뽑기</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Placeholder Image for AI Face Test -->
+                <img src="images/placeholder_ai_face.svg" alt="AI 얼굴 인식 이미지" class="responsive-image">
+            </div>
         </section>
-        <section class="share-section">
-            <button id="share-button" style="display: none;"></button>
+
+        <section class="features-overview">
+            <h2 class="section-heading">Face-to-Face의 특별한 기능</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="images/placeholder_ai_face.svg" alt="AI 동물상 테스트 아이콘" class="feature-icon">
+                    <h3>AI 동물상 테스트</h3>
+                    <p>
+                        당신의 얼굴을 분석하여 가장 잘 어울리는 동물상을 찾아드립니다. 
+                        섬세한 AI 기술이 당신의 독특한 매력을 포착하고, 
+                        재미있는 결과와 함께 친구들과 웃음꽃을 피울 수 있습니다.
+                    </p>
+                    <a href="animal_face_test.html" class="button small-button">자세히 알아보기</a>
+                </div>
+                <div class="feature-card">
+                    <img src="images/placeholder_lucky_draw.svg" alt="행운 뽑기 아이콘" class="feature-icon">
+                    <h3>매일매일 행운 뽑기</h3>
+                    <p>
+                        오늘의 운세를 시험해보고 싶으신가요? 
+                        버튼 하나로 당신에게 찾아올 소소한 행운을 발견해보세요. 
+                        예측 불가능한 즐거움이 가득한 행운 뽑기가 당신을 기다립니다!
+                    </p>
+                    <button id="draw-button" class="button small-button">행운 뽑기 시작</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="value-proposition">
+            <h2 class="section-heading">왜 Face-to-Face를 선택해야 할까요?</h2>
+            <div class="value-points">
+                <div class="value-item">
+                    <img src="images/placeholder_ai_face.svg" alt="AI 아이콘" class="value-icon">
+                    <h3>정확하고 재미있는 AI 분석</h3>
+                    <p>최첨단 AI 기술로 얼굴 특징을 정밀하게 분석하여 흥미롭고 신뢰도 높은 동물상 결과를 제공합니다.</p>
+                </div>
+                <div class="value-item">
+                    <img src="images/placeholder_community.svg" alt="공유 아이콘" class="value-icon">
+                    <h3>손쉬운 결과 공유</h3>
+                    <p>친구, 가족과 함께 결과를 쉽게 공유하고, 서로의 동물상을 비교하며 즐거운 시간을 보낼 수 있습니다.</p>
+                </div>
+                <div class="value-item">
+                    <img src="images/placeholder_lucky_draw.svg" alt="선물 아이콘" class="value-icon">
+                    <h3>매일 새로운 즐거움</h3>
+                    <p>단순한 테스트를 넘어, 매일매일 새로운 행운과 발견의 기회를 제공하여 일상에 활력을 불어넣습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2 class="section-heading">사용자 후기</h2>
+            <div class="testimonial-carousel">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "제 얼굴이 시바견이라니! 정말 재미있고 신기했어요. 친구들과 다 같이 해봤는데 시간 가는 줄 몰랐네요."
+                    </p>
+                    <p class="testimonial-author">- 김**님</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "별 기대 없이 행운 뽑기를 했는데, 진짜 좋은 일이 생겼어요! 매일 아침마다 확인하는 재미가 쏠쏠합니다."
+                    </p>
+                    <p class="testimonial-author">- 박**님</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "깔끔한 디자인과 직관적인 사용법이 마음에 들어요. 지루할 때 한 번씩 들어와서 즐기기 좋습니다!"
+                    </p>
+                    <p class="testimonial-author">- 이**님</p>
+                </div>
+            </div>
         </section>
     </main>
 
