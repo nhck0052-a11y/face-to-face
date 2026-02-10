@@ -63,15 +63,50 @@ Improve user flow and visual hierarchy on the homepage by reordering content and
     *   **Action:** In `main.js`, modified the `handleDrawButtonClick` function. After the lucky draw result is displayed and confetti animation completes, added JavaScript to smoothly scroll the user's view to the `<section id="lucky-draw-results">`.
     *   **Reasoning:** This improves user experience by directly guiding them to the outcome of their interaction, making the process more intuitive and engaging.
 
-### Language Switching Fix (Current Task)
+---
+
+### Recent Enhancements for AdSense Compliance (Current Iteration)
 
 #### Objective
-Ensure that all dynamic UI elements, particularly navigation links, are correctly translated when the language is switched.
+Further enrich website content, improve navigation consistency, ensure proper language localization across new content, and enhance accessibility to strengthen the site's appeal for Google AdSense approval.
 
-#### Plan and Steps for Current Requested Changes
+#### New Features & Content (Applied)
 
-1.  **Re-enable Translation for Navigation Links in `main.js`:**
-    *   **Action:** In the `setLanguage` function within `main.js`, re-introduced `textContent` updates for `animal-face-test-nav-button`, `about-nav-button`, and `contactNavButton`.
-    *   **Reasoning:** These elements are part of the interactive UI and should be translated, unlike the static rich content added for AdSense compliance.
+1.  **High-Value Article Pages Added:**
+    *   **`articles.html`:** Created as an index page for educational and informative articles related to AI and facial recognition.
+    *   **`article-ai-face-recognition.html`:** Added a detailed article titled "AI 얼굴 인식 기술의 발전과 미래" covering principles, applications, and future outlook.
+    *   **`article-ethics-of-ai.html`:** Added an informative article titled "AI와 얼굴 데이터: 윤리적 고려사항과 올바른 사용" discussing ethical concerns and responsible usage.
+    *   **Reasoning:** Directly addresses the "low-value content" AdSense rejection by providing substantial, original, and relevant long-form content.
+
+2.  **Consistent Header Navigation Across All Pages:**
+    *   **Action:** Modified `index.html`, `animal_face_test.html`, `about.html`, `privacy.html`, `articles.html`, `article-ai-face-recognition.html`, and `article-ethics-of-ai.html` to include a uniform header navigation bar.
+    *   **Content:** The navigation now consistently features links to "AI 동물상 테스트", "회사 소개", "아티클", and a "문의하기" button.
+    *   **Reasoning:** Improves site structure, user experience, and content discoverability, which are key factors for AdSense approval.
+
+3.  **Enhanced Language Switching Functionality:**
+    *   **Action:** Ensured `main.js` is included in `animal_face_test.html`, `about.html`, and `privacy.html` to enable language toggling on these sub-pages.
+    *   **Action:** Updated `main.js` to include new translation keys for all article page content (titles, introductions, section headings, paragraphs, list items, navigation buttons) and the new "Articles" navigation link, ensuring full localization.
+    *   **Reasoning:** Provides a seamless user experience across different languages and ensures all new content is accessible, which is vital for a global audience and AdSense.
+
+4.  **Improved Styling for Article Pages:**
+    *   **Action:** Added specific CSS rules to `style.css` for `.article-meta`, `.article-section`, `.article-image`, `.article-navigation`, `.article-grid`, and `.article-card`.
+    *   **Reasoning:** Ensures the newly added article content is presented clearly, professionally, and consistently with the site's overall aesthetic, enhancing readability and user engagement.
+
+5.  **Git Ignore File Updated:**
+    *   **Action:** Added `firebase-debug.log` to `.gitignore`.
+    *   **Reasoning:** Prevents unnecessary debug logs from being committed to the repository, maintaining a clean version control history.
+
+6.  **Image Accessibility (Alt Attributes) Verified:**
+    *   **Action:** Reviewed all `<img>` tags in all HTML files (`index.html`, `article-ai-face-recognition.html`, `article-ethics-of-ai.html`).
+    *   **Result:** All images identified were found to have appropriate and relevant `alt` attributes. `animal_face_test.html`, `about.html`, `privacy.html`, and `articles.html` do not use `<img>` tags for dynamic content, relying on canvas or CSS for visuals, making them accessible in their current implementation.
+    *   **Reasoning:** Enhances website accessibility, which is a critical factor for SEO and user experience, directly contributing to AdSense compliance.
+
+---
+
+### Current Task
+
+1.  **Finalize `blueprint.md` Update:**
+    *   **Action:** The `blueprint.md` file has been updated to reflect all completed tasks and recent enhancements.
+    *   **Reasoning:** To maintain a single, comprehensive source of truth for the project's development, detailing all modifications made to enhance AdSense compliance and overall site quality.
 
 This blueprint will continue to be updated iteratively as changes are implemented.
