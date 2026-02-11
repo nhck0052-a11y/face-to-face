@@ -1,17 +1,17 @@
 # Project Blueprint: Face-to-Face Website
 
 ## Overview
-This project is a simple, framework-less web application designed to demonstrate face recognition and related AI concepts. It consists of several HTML pages, CSS styling, and JavaScript functionality. It is now optimized for SEO, Generative Engine Optimization (GEO), and includes social sharing features.
+This project is a simple, framework-less web application designed to demonstrate face recognition and related AI concepts. It consists of several HTML pages, CSS styling, and JavaScript functionality. It is now optimized for SEO, Generative Engine Optimization (GEO), includes social sharing features, and a user feedback service.
 
-## Current State (After SEO, GEO, and Social Sharing Integration)
+## Current State (After SEO, GEO, Social Sharing, and User Feedback Integration)
 The project currently includes:
-- `index.html`: Main landing page, optimized for SEO with descriptive title, meta description, robots tag, accurate Open Graph/Twitter Card meta tags, canonical link, WebSite structured data, asynchronously loaded Font Awesome, and a new FAQ section for GEO.
-- `about.html`: About Us page, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link.
+- `index.html`: Main landing page, optimized for SEO with descriptive title, meta description, robots tag, accurate Open Graph/Twitter Card meta tags, canonical link, WebSite structured data, asynchronously loaded Font Awesome, a new FAQ section for GEO, and Userback feedback service integration.
+- `about.html`: About Us page, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link, and Userback feedback service integration.
 - `articles.html`: Page listing articles, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link.
 - `privacy.html`: Privacy Policy page, optimized for SEO with descriptive title, meta description, `noindex, follow` robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link.
-- `animal_face_test.html`: AI Animal Face Test page, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, canonical link, and deferred loading for TensorFlow, Teachable Machine, and Canvas Confetti scripts. Includes `favicon.ico` link, and now features AddToAny social sharing buttons.
-- `article-ai-face-recognition.html`: Article on AI face recognition, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Includes `favicon.ico` link, and now features AddToAny social sharing buttons.
-- `article-ethics-of-ai.html`: Article on AI ethics, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Includes `favicon.ico` link, and now features AddToAny social sharing buttons.
+- `animal_face_test.html`: AI Animal Face Test page, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, canonical link, and deferred loading for TensorFlow, Teachable Machine, and Canvas Confetti scripts. Includes `favicon.ico` link, AddToAny social sharing buttons, and Userback feedback service integration.
+- `article-ai-face-recognition.html`: Article on AI face recognition, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Includes `favicon.ico` link, AddToAny social sharing buttons, and Userback feedback service integration.
+- `article-ethics-of-ai.html`: Article on AI ethics, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Includes `favicon.ico` link, AddToAny social sharing buttons, and Userback feedback service integration.
 - `404.html`: Custom 404 error page with helpful links and meta tags. Includes `favicon.ico` link, canonical link, meta description, and robots `noindex, nofollow`.
 - `face_test.html`: This file was found to be empty and thus does not require SEO optimization.
 - `style.css`: Global CSS styles.
@@ -34,7 +34,7 @@ The site is deployed at `https://face-to-face-7a1.pages.dev/`.
 ### Accessibility (A11Y)
 - General commitment to accessibility, with semantic HTML and descriptive image `alt` attributes contributing to better accessibility.
 
-## Completed Tasks: SEO, GEO, and Social Sharing Integration
+## Completed Tasks: SEO, GEO, Social Sharing, and User Feedback Integration
 
 ### Steps Taken for SEO
 1.  **URL Canonicalization**: Added `<link rel="canonical">` tags to all relevant HTML pages pointing to their preferred URLs.
@@ -53,6 +53,9 @@ The site is deployed at `https://face-to-face-7a1.pages.dev/`.
 
 ### Steps Taken for Social Sharing
 1.  **AddToAny Integration**: Added AddToAny social sharing buttons to `animal_face_test.html`, `article-ai-face-recognition.html`, and `article-ethics-of-ai.html` to allow users to easily share content.
+
+### Steps Taken for User Feedback Integration
+1.  **Userback Integration**: Integrated the Userback feedback widget script into `index.html`, `about.html`, `animal_face_test.html`, `article-ai-face-recognition.html`, and `article-ethics-of-ai.html`.
 
 ### Items for User's Consideration (Beyond direct code modification)
 1.  **SPF Record**: Requires DNS configuration.
