@@ -469,7 +469,10 @@ const setLanguage = (lang) => {
     localStorage.setItem('lang', lang);
     const t = translations[lang];
 
-    document.title = t.title;
+    // Conditionally set document.title only for index.html
+    if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+        document.title = t.title;
+    }
 
     const elementsToTranslate = [
         // Header/Navigation
