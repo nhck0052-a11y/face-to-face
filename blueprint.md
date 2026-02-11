@@ -1,18 +1,18 @@
 # Project Blueprint: Face-to-Face Website
 
 ## Overview
-This project is a simple, framework-less web application designed to demonstrate face recognition and related AI concepts. It consists of several HTML pages, CSS styling, and JavaScript functionality. The goal is to create a visually appealing, responsive, accessible, and now, Generative Engine Optimized (GEO) website.
+This project is a simple, framework-less web application designed to demonstrate face recognition and related AI concepts. It consists of several HTML pages, CSS styling, and JavaScript functionality. It is now optimized for SEO, Generative Engine Optimization (GEO), and includes social sharing features.
 
-## Current State (After SEO & GEO Optimization)
+## Current State (After SEO, GEO, and Social Sharing Integration)
 The project currently includes:
 - `index.html`: Main landing page, optimized for SEO with descriptive title, meta description, robots tag, accurate Open Graph/Twitter Card meta tags, canonical link, WebSite structured data, asynchronously loaded Font Awesome, and a new FAQ section for GEO.
 - `about.html`: About Us page, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link.
 - `articles.html`: Page listing articles, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link.
 - `privacy.html`: Privacy Policy page, optimized for SEO with descriptive title, meta description, `noindex, follow` robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link.
-- `animal_face_test.html`: AI Animal Face Test page, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, canonical link, and deferred loading for TensorFlow, Teachable Machine, and Canvas Confetti scripts. Also includes `favicon.ico` link.
-- `article-ai-face-recognition.html`: Article on AI face recognition, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link.
-- `article-ethics-of-ai.html`: Article on AI ethics, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Also includes `favicon.ico` link.
-- `404.html`: Custom 404 error page with helpful links. Includes `favicon.ico` link, canonical link, meta description, and robots `noindex, nofollow`.
+- `animal_face_test.html`: AI Animal Face Test page, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, canonical link, and deferred loading for TensorFlow, Teachable Machine, and Canvas Confetti scripts. Includes `favicon.ico` link, and now features AddToAny social sharing buttons.
+- `article-ai-face-recognition.html`: Article on AI face recognition, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Includes `favicon.ico` link, and now features AddToAny social sharing buttons.
+- `article-ethics-of-ai.html`: Article on AI ethics, optimized for SEO with descriptive title, meta description, robots tag, Open Graph/Twitter Card meta tags, and canonical link. Includes `favicon.ico` link, and now features AddToAny social sharing buttons.
+- `404.html`: Custom 404 error page with helpful links and meta tags. Includes `favicon.ico` link, canonical link, meta description, and robots `noindex, nofollow`.
 - `face_test.html`: This file was found to be empty and thus does not require SEO optimization.
 - `style.css`: Global CSS styles.
 - `main.js`: Main JavaScript file for interactive elements, updated to conditionally set document title only for `index.html`.
@@ -34,10 +34,7 @@ The site is deployed at `https://face-to-face-7a1.pages.dev/`.
 ### Accessibility (A11Y)
 - General commitment to accessibility, with semantic HTML and descriptive image `alt` attributes contributing to better accessibility.
 
-## Completed Task: SEO & GEO Optimization
-
-### Plan
-The task to optimize the website for Search Engine Optimization (SEO) and Generative Engine Optimization (GEO) based on recommendations from Google, Naver, and a Toss Payments article has been completed.
+## Completed Tasks: SEO, GEO, and Social Sharing Integration
 
 ### Steps Taken for SEO
 1.  **URL Canonicalization**: Added `<link rel="canonical">` tags to all relevant HTML pages pointing to their preferred URLs.
@@ -53,6 +50,9 @@ The task to optimize the website for Search Engine Optimization (SEO) and Genera
 
 ### Steps Taken for GEO
 1.  **Conversational Content**: Added a "자주 묻는 질문 (FAQ)" section to `index.html` with example questions and user-centric answers to enhance conversational content.
+
+### Steps Taken for Social Sharing
+1.  **AddToAny Integration**: Added AddToAny social sharing buttons to `animal_face_test.html`, `article-ai-face-recognition.html`, and `article-ethics-of-ai.html` to allow users to easily share content.
 
 ### Items for User's Consideration (Beyond direct code modification)
 1.  **SPF Record**: Requires DNS configuration.
